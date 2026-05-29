@@ -1,0 +1,458 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { persistIdentityHandoff, writeAccessToken, writeRefreshToken } from '../../../../core/auth.interceptor';
+import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
+import type { MeResponse, TokenResponse } from '../../../../core/models/me.model';
+import { extractApiErrorMessage } from '../../../../core/session/http-error.util';
+import { SessionContextService } from '../../../../core/session/session-context.service';
+import { tenantSlugFromMe } from '../../../../core/session/tenant-slug.util';
+import { TenantContextService } from '../../../../core/tenant/tenant-context.service';
+
+/**
+ * Handoff desde el shell de la suite (dev): recibe el access token del Identity Gateway en {@code ?at=}
+ * (y opcionalmente {@code ?rt=}) y canjea sesión en eFactura. Los tokens Identity se conservan en
+ * sessionStorage para abrir Cartera desde el dashboard sin otra pestaña del shell.
+ */
+@Component({
+  selector: 'ts-suite-identity-callback-page',
+  standalone: true,
+  imports: [RouterLink],
+  template: `
+    <div class="sso-root" [attr.aria-busy]="error ? 'false' : 'true'" aria-live="polite">
+      <div class="sso-noise" aria-hidden="true"></div>
+      <div class="sso-orb sso-orb--a" aria-hidden="true"></div>
+      <div class="sso-orb sso-orb--b" aria-hidden="true"></div>
+
+      <main class="sso-card">
+        <header class="sso-brand">
+          <div class="sso-brand__mark" aria-hidden="true">
+            <span class="sso-brand__e">e</span>
+          </div>
+          <div class="sso-brand__text">
+            <h1 class="sso-brand__title">{{ i18n.t('suiteSso.bridgeTitle') }}</h1>
+            <p class="sso-brand__sub">{{ i18n.t('suiteSso.bridgeSubtitle') }}</p>
+          </div>
+        </header>
+
+        @if (error) {
+          <div class="sso-panel sso-panel--error" role="alert">
+            <div class="sso-panel__icon-err" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" />
+                <path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </div>
+            <p class="sso-err-text">{{ error }}</p>
+            <a class="sso-btn" routerLink="/t/default/login">{{ backLabel }}</a>
+          </div>
+        } @else {
+          <div class="sso-flow" aria-hidden="true">
+            <div class="sso-node">
+              <span class="sso-node__dot sso-node__dot--suite"></span>
+              <span class="sso-node__label">{{ i18n.t('suiteSso.stepIdentity') }}</span>
+            </div>
+            <div class="sso-bridge">
+              <span class="sso-bridge__line"></span>
+              <span class="sso-bridge__pulse"></span>
+              <svg class="sso-bridge__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M5 12h12m0 0l-4-4m4 4l-4 4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <div class="sso-node">
+              <span class="sso-node__dot sso-node__dot--ef"></span>
+              <span class="sso-node__label">{{ i18n.t('suiteSso.stepEfactura') }}</span>
+            </div>
+          </div>
+
+          <div class="sso-panel sso-panel--loading">
+            <div class="sso-status">
+              <span class="sso-spinner" aria-hidden="true"></span>
+              <p class="sso-msg">{{ message }}</p>
+            </div>
+            <p class="sso-hint">{{ i18n.t('suiteSso.secureHint') }}</p>
+          </div>
+        }
+      </main>
+    </div>
+  `,
+  styles: `
+    .sso-root {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: clamp(1rem, 4vw, 2rem);
+      overflow: hidden;
+      background: linear-gradient(165deg, #0c1222 0%, #111827 42%, #1e1b4b 100%);
+      color: #e2e8f0;
+      font-family:
+        'Plus Jakarta Sans',
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .sso-noise {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .sso-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(64px);
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    .sso-orb--a {
+      width: min(380px, 85vw);
+      height: min(380px, 85vw);
+      top: -12%;
+      left: -8%;
+      background: radial-gradient(circle, rgba(99, 102, 241, 0.55) 0%, transparent 68%);
+      animation: sso-float 16s ease-in-out infinite;
+    }
+    .sso-orb--b {
+      width: min(320px, 75vw);
+      height: min(320px, 75vw);
+      bottom: -8%;
+      right: -6%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.35) 0%, transparent 70%);
+      animation: sso-float 18s ease-in-out infinite reverse;
+    }
+    @keyframes sso-float {
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+      50% {
+        transform: translate(2%, 3%) scale(1.05);
+      }
+    }
+    .sso-card {
+      position: relative;
+      z-index: 1;
+      width: min(26rem, 100%);
+      padding: clamp(1.35rem, 4vw, 1.85rem);
+      border-radius: 1.35rem;
+      background: linear-gradient(
+        165deg,
+        rgba(255, 255, 255, 0.11) 0%,
+        rgba(255, 255, 255, 0.05) 50%,
+        rgba(255, 255, 255, 0.03) 100%
+      );
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+        0 28px 56px -20px rgba(0, 0, 0, 0.55),
+        0 0 100px -28px rgba(99, 102, 241, 0.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+    @supports not (backdrop-filter: blur(1px)) {
+      .sso-card {
+        background: rgba(15, 23, 42, 0.94);
+      }
+    }
+    .sso-brand {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.9rem;
+      margin-bottom: 1.35rem;
+      padding-bottom: 1.15rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sso-brand__mark {
+      flex-shrink: 0;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 0.85rem;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+      box-shadow:
+        0 10px 26px rgba(99, 102, 241, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+    }
+    .sso-brand__e {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+    }
+    .sso-brand__text {
+      min-width: 0;
+    }
+    .sso-brand__title {
+      margin: 0;
+      font-size: clamp(1.15rem, 3vw, 1.35rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+    }
+    .sso-brand__sub {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      font-weight: 500;
+      color: rgba(203, 213, 225, 0.88);
+    }
+    .sso-flow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 1.15rem;
+      padding: 0.65rem 0.35rem;
+    }
+    .sso-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      flex: 0 0 auto;
+    }
+    .sso-node__dot {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 999px;
+      box-shadow: 0 0 14px currentColor;
+    }
+    .sso-node__dot--suite {
+      color: #a5b4fc;
+      background: #a5b4fc;
+    }
+    .sso-node__dot--ef {
+      color: #22d3ee;
+      background: #22d3ee;
+      animation: sso-pulse-dot 1.2s ease-in-out infinite;
+    }
+    @keyframes sso-pulse-dot {
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15);
+        opacity: 0.85;
+      }
+    }
+    .sso-node__label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(226, 232, 240, 0.65);
+    }
+    .sso-bridge {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      min-width: 0;
+      position: relative;
+      height: 2rem;
+    }
+    .sso-bridge__line {
+      position: absolute;
+      left: 8%;
+      right: 8%;
+      top: 50%;
+      height: 2px;
+      margin-top: -1px;
+      border-radius: 2px;
+      background: linear-gradient(
+        90deg,
+        rgba(165, 180, 252, 0.35) 0%,
+        rgba(129, 140, 248, 0.85) 45%,
+        rgba(34, 211, 238, 0.75) 100%
+      );
+      opacity: 0.85;
+    }
+    .sso-bridge__pulse {
+      position: absolute;
+      left: 8%;
+      width: 28%;
+      top: 50%;
+      height: 3px;
+      margin-top: -1.5px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, transparent, #fff, transparent);
+      opacity: 0.55;
+      animation: sso-pulse-line 1.4s ease-in-out infinite;
+    }
+    @keyframes sso-pulse-line {
+      0% {
+        transform: translateX(0);
+        opacity: 0.2;
+      }
+      40% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateX(220%);
+        opacity: 0.15;
+      }
+    }
+    .sso-bridge__arrow {
+      position: relative;
+      z-index: 1;
+      color: rgba(248, 250, 252, 0.9);
+      filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.5));
+    }
+    .sso-panel {
+      border-radius: 1rem;
+      padding: 1rem 1.1rem;
+    }
+    .sso-panel--loading {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .sso-panel--error {
+      text-align: center;
+      background: rgba(127, 29, 29, 0.25);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+    }
+    .sso-panel__icon-err {
+      display: grid;
+      place-items: center;
+      margin: 0 auto 0.75rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      color: #fecaca;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .sso-status {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .sso-spinner {
+      flex-shrink: 0;
+      width: 1.35rem;
+      height: 1.35rem;
+      border: 2.5px solid rgba(165, 180, 252, 0.35);
+      border-top-color: #e0e7ff;
+      border-radius: 50%;
+      animation: sso-spin 0.7s linear infinite;
+    }
+    @keyframes sso-spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .sso-msg {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 650;
+      color: #f1f5f9;
+      line-height: 1.4;
+    }
+    .sso-hint {
+      margin: 0.75rem 0 0;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.85);
+      line-height: 1.45;
+    }
+    .sso-err-text {
+      margin: 0 0 1rem;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: #fecaca;
+      font-weight: 600;
+    }
+    .sso-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.65rem;
+      padding: 0 1.35rem;
+      border-radius: 0.85rem;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 10px 24px rgba(79, 70, 229, 0.4);
+      transition:
+        filter 0.15s ease,
+        transform 0.15s ease;
+    }
+    .sso-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+    }
+  `,
+})
+export class SuiteIdentityCallbackPageComponent implements OnInit {
+  private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
+  private readonly http = inject(HttpClient);
+  readonly i18n = inject(UiI18nService);
+  private readonly session = inject(SessionContextService);
+  private readonly tenant = inject(TenantContextService);
+
+  error = '';
+  message = '';
+  backLabel = '';
+
+  ngOnInit(): void {
+    this.message = this.i18n.t('suiteSso.connecting');
+    this.backLabel = this.i18n.t('suiteSso.backToLogin');
+    const at = this.route.snapshot.queryParamMap.get('at');
+    if (!at?.trim()) {
+      this.error = this.i18n.t('suiteSso.missingParam');
+      return;
+    }
+    const identityAccess = at.trim();
+    const identityRefresh = this.route.snapshot.queryParamMap.get('rt')?.trim() || null;
+    if (globalThis.history?.replaceState) {
+      globalThis.history.replaceState(null, '', '/auth/suite-callback');
+    }
+    this.http
+      .post<TokenResponse>(
+        '/api/web/v1/auth/suite/exchange',
+        {},
+        { headers: { Authorization: `Bearer ${identityAccess}` } },
+      )
+      .subscribe({
+        next: (tokens) => {
+          writeAccessToken(tokens.accessToken);
+          writeRefreshToken(tokens.refreshToken);
+          persistIdentityHandoff(identityAccess, identityRefresh);
+          this.http.get<MeResponse>('/api/web/v1/me').subscribe({
+            next: (me) => {
+              this.session.setMe(me);
+              const slug = tenantSlugFromMe(me);
+              this.tenant.setSlug(slug);
+              void this.router.navigate(['/t', slug, 'dashboard'], { replaceUrl: true });
+            },
+            error: () => {
+              this.error = this.i18n.t('suiteSso.profileError');
+            },
+          });
+        },
+        error: (err: HttpErrorResponse) => {
+          this.error = extractApiErrorMessage(err, this.i18n.t('suiteSso.exchangeFailed'));
+        },
+      });
+  }
+}

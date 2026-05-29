@@ -1,0 +1,1283 @@
+@import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
+
+:root {
+  --bg: #0f1419;
+  --card: #1a222c;
+  --text: #e8eef5;
+  --muted: #94a3b8;
+  --border: #2a3544;
+  --ef-label: #cbd5e1;
+  --ef-muted: #94a3b8;
+  --ef-muted-soft: #64748b;
+  /* Hope UI (#eee): la UI es clara; bordes visibles en todos los perfiles del SO */
+  --bs-border-color: #cbd5e1bd;
+  --ef-surface-border: #cbd5e17a;
+  --ef-surface-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 22px rgba(15, 23, 42, 0.07);
+  --ef-surface-radius: 10px;
+  --ef-divider: #e2e8f0;
+  --ef-input-radius: 8px;
+  --ef-input-border: #cbd5e1bd;
+  --ef-input-border-hover: #94a3b8;
+  --ef-primary: #3a57e8;
+  --ef-input-border-focus: var(--ef-primary);
+  --ef-primary-strong: #2f46c0;
+  --ef-primary-soft: #eef3ff;
+  --ef-input-bg: #ffffff;
+  --ef-input-placeholder: #64748b;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --text: #1a222c;
+    --muted: #475569;
+    --border: #dce3ec;
+    /* Etiquetas y textos secundarios: más oscuros para buen contraste en pantallas claras */
+    --ef-label: #334155;
+    --ef-muted: #475569;
+    --ef-muted-soft: #64748b;
+    --bs-secondary-color: #475569;
+    --bs-secondary: #64748b;
+    --bs-body-color: #1e293b;
+  }
+}
+
+/* Textos secundarios Bootstrap (suelen quedar demasiado claros por defecto) */
+.text-muted {
+  --bs-text-opacity: 1;
+  color: var(--ef-muted, #475569) !important;
+}
+
+.text-muted.small,
+small.text-muted,
+.form-text {
+  color: var(--ef-muted-soft, #64748b) !important;
+}
+
+.text-secondary {
+  --bs-text-opacity: 1;
+  color: var(--ef-muted, #475569) !important;
+}
+
+/* Inputs: borde visible y acabado más refinado */
+.form-control,
+.form-select {
+  border-color: var(--ef-input-border, #cbd5e1bd);
+  border-radius: var(--ef-input-radius, 8px);
+  background-color: var(--ef-input-bg, #fff);
+  color: var(--bs-body-color, #1e293b);
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.form-control::placeholder {
+  color: var(--ef-input-placeholder, #64748b);
+  opacity: 1;
+}
+
+.form-control:hover:not(:disabled):not([readonly]):not(:focus),
+.form-select:hover:not(:disabled):not(:focus) {
+  border-color: var(--ef-input-border-hover, #94a3b8);
+  background-color: #fff;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--ef-input-border-focus, #3a57e8);
+  background-color: var(--ef-input-bg, #fff);
+  box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.14);
+  color: var(--bs-body-color, #1e293b);
+}
+
+.form-control:disabled,
+.form-control[readonly],
+.form-select:disabled {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #475569;
+}
+
+.form-label {
+  margin-bottom: 0.3rem;
+  color: var(--ef-label, #334155);
+  font-weight: 600;
+}
+
+.input-group-text {
+  border-color: var(--ef-input-border, #94a3b8);
+  background-color: #f8fafc;
+  color: #475569;
+}
+
+.input-group:focus-within > .form-control,
+.input-group:focus-within > .form-select,
+.input-group:focus-within > .input-group-text {
+  border-color: var(--ef-input-border-focus, #3a57e8);
+}
+
+/* Barra de búsqueda del navbar (Hope anula sombra y deja borde tenue) */
+.nav .search-input.input-group .form-control,
+.nav .search-input.input-group .input-group-text {
+  border-color: var(--ef-input-border, #94a3b8);
+}
+
+.nav .search-input.input-group .form-control:focus {
+  border-color: var(--ef-input-border-focus, #3a57e8);
+  box-shadow: none;
+}
+
+.nav .search-input.input-group:focus-within .input-group-text,
+.nav .search-input.input-group:focus-within .form-control {
+  border-color: var(--ef-input-border-focus, #3a57e8);
+}
+
+/* Celdas editables en Tabulator */
+.ts-tabulator-grid.tabulator .tabulator-cell input,
+.ts-tabulator-grid.tabulator .tabulator-cell select,
+.ts-tabulator-grid.tabulator .tabulator-cell textarea {
+  border: 1px solid var(--ef-input-border, #94a3b8) !important;
+  border-radius: 4px;
+  color: #1e293b;
+  background: #fff;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-cell input:focus,
+.ts-tabulator-grid.tabulator .tabulator-cell select:focus,
+.ts-tabulator-grid.tabulator .tabulator-cell textarea:focus {
+  border-color: var(--ef-input-border-focus, #3a57e8) !important;
+  outline: 0;
+  box-shadow: 0 0 0 0.15rem rgba(58, 87, 232, 0.2);
+}
+
+/* Tarjetas y paneles Bootstrap / Hope UI */
+.card {
+  border-color: var(--ef-surface-border, #cbd5e17a);
+  border-radius: var(--ef-surface-radius, 10px);
+  box-shadow: var(--ef-surface-shadow);
+  overflow: hidden;
+}
+
+.card-header,
+.card-footer {
+  border-color: var(--ef-divider, #e2e8f0);
+  background-color: #fafbfc;
+}
+
+/* Opciones tipo tarjeta (presets de diseño correo/RIDE, etc.) */
+.ts-choice-card {
+  border: 1px solid var(--ef-input-border, #cbd5e1bd);
+  border-radius: var(--ef-input-radius, 8px);
+  background: #fff;
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.ts-choice-card:hover {
+  border-color: var(--ef-input-border-hover, #94a3b8);
+  background: #fafbfc;
+}
+
+.ts-choice-card--active {
+  border-color: var(--ef-input-border-focus, #3a57e8);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.12);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+.btn:not(.btn-sm):not(.btn-lg):not(.nav-link):not(.search-toggle) {
+  min-height: 2rem;
+  padding: 0.34rem 0.72rem;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.btn.btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #3a57e8;
+  --bs-btn-border-color: #3a57e8;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #2f46c0;
+  --bs-btn-hover-border-color: #2f46c0;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #263aa0;
+  --bs-btn-active-border-color: #263aa0;
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #3a57e8;
+  --bs-btn-disabled-border-color: #3a57e8;
+  color: #ffffff;
+}
+
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.show {
+  border-color: #2f46c0 !important;
+  background-color: #2f46c0 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-soft-primary {
+  --bs-btn-color: #2f46c0;
+  --bs-btn-bg: rgba(58, 87, 232, 0.12);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #3a57e8;
+  --bs-btn-hover-border-color: #3a57e8;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #2f46c0;
+  --bs-btn-active-border-color: #2f46c0;
+  border-color: transparent;
+  background-color: rgba(58, 87, 232, 0.12);
+  color: #2f46c0;
+}
+
+.btn.btn-soft-primary:hover,
+.btn.btn-soft-primary:focus,
+.btn.btn-soft-primary:active {
+  border-color: #3a57e8 !important;
+  background-color: #3a57e8 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-soft-info {
+  --bs-btn-color: #087b88;
+  --bs-btn-bg: rgba(7, 201, 218, 0.14);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #079aa8;
+  --bs-btn-hover-border-color: #079aa8;
+  border-color: transparent;
+  background-color: rgba(7, 201, 218, 0.14);
+  color: #087b88;
+}
+
+.btn.btn-soft-info:hover,
+.btn.btn-soft-info:focus,
+.btn.btn-soft-info:active {
+  border-color: #079aa8 !important;
+  background-color: #079aa8 !important;
+  color: #ffffff !important;
+}
+
+.btn.btn-soft-light {
+  color: #ffffff;
+}
+
+.btn.btn-soft-light:hover,
+.btn.btn-soft-light:focus,
+.btn.btn-soft-light:active {
+  background-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
+.btn.btn-soft-primary:disabled,
+.btn.btn-soft-info:disabled,
+.btn.btn-soft-light:disabled {
+  opacity: 0.65;
+}
+
+/* Emitir / guardar principal en cabecera de formularios */
+.btn.btn-success {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: #1aa053;
+  --bs-btn-border-color: #1aa053;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #158f47;
+  --bs-btn-hover-border-color: #158f47;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #127a3d;
+  --bs-btn-active-border-color: #127a3d;
+  color: #ffffff;
+  background-color: #1aa053;
+  border-color: #1aa053;
+}
+
+.btn.btn-success:hover,
+.btn.btn-success:focus,
+.btn.btn-success:active {
+  color: #ffffff !important;
+  background-color: #158f47 !important;
+  border-color: #158f47 !important;
+}
+
+.btn.btn-light {
+  --bs-btn-color: #334155;
+  --bs-btn-bg: #f8fafc;
+  --bs-btn-border-color: #e2e8f0;
+  --bs-btn-hover-color: #1e293b;
+  --bs-btn-hover-bg: #f1f5f9;
+  --bs-btn-hover-border-color: #cbd5e1;
+  color: #334155;
+  background-color: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+.btn.btn-light:hover,
+.btn.btn-light:focus,
+.btn.btn-light:active {
+  color: #1e293b !important;
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/**
+ * Barra de acciones en cabecera (filtros, buscar, historial).
+ * Usar: <div page-actions class="ts-page-actions-toolbar ...">
+ */
+.ts-page-actions-toolbar .btn.btn-outline-secondary {
+  color: #475569 !important;
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+.ts-page-actions-toolbar .btn.btn-outline-secondary:hover,
+.ts-page-actions-toolbar .btn.btn-outline-secondary:focus,
+.ts-page-actions-toolbar .btn.btn-outline-secondary:active {
+  color: #1e293b !important;
+  background-color: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+}
+
+.ts-page-actions-toolbar .btn.btn-soft-primary {
+  color: #2f46c0 !important;
+  background-color: rgba(58, 87, 232, 0.12) !important;
+  border-color: transparent !important;
+}
+
+.ts-page-actions-toolbar .btn.btn-soft-primary:hover,
+.ts-page-actions-toolbar .btn.btn-soft-primary:focus,
+.ts-page-actions-toolbar .btn.btn-soft-primary:active {
+  color: #ffffff !important;
+  background-color: #3a57e8 !important;
+  border-color: #3a57e8 !important;
+}
+
+.ts-tabulator-grid.tabulator {
+  border: 1px solid var(--ef-surface-border, #cbd5e17a);
+  border-radius: var(--ef-input-radius, 8px);
+  overflow: hidden;
+  background: #ffffff;
+  color: #26324d;
+  font-size: 0.925rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header {
+  border-bottom: 1px solid #e5e7eb;
+  background: #f8fafc;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header .tabulator-col {
+  border-right: 1px solid #e5e7eb;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 700;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header .tabulator-col:last-child {
+  border-right: 0;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header .tabulator-col .tabulator-col-content {
+  padding: 0.85rem 0.9rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header .tabulator-col .tabulator-col-title {
+  white-space: normal;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-header .tabulator-col {
+  height: auto !important;
+  min-height: 2.75rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row {
+  border-bottom: 1px solid #edf2f7;
+  background: #ffffff;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row.tabulator-row-even {
+  background: #fbfcfe;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row:hover {
+  background: #f5f8ff;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row .tabulator-cell {
+  border-right: 1px solid #edf2f7;
+  padding: 0.2rem 0.2rem;
+  color: #26324d;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row .tabulator-cell:has(.ts-grid-actions) {
+  overflow: visible;
+  padding: 0.45rem 0.6rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-row .tabulator-cell:last-child {
+  border-right: 0;
+}
+
+.ts-tabulator-grid .ts-grid-actions {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.ts-tabulator-grid .ts-grid-actions__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.95rem;
+  height: 1.95rem;
+  min-width: 1.95rem;
+  min-height: 1.95rem;
+  padding: 0;
+  border: 1px solid #d8deea;
+  border-radius: 8px;
+  background: #f4f7fb;
+  color: #46566f;
+  font-weight: 700;
+  line-height: 1;
+  vertical-align: middle;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+
+.ts-tabulator-grid .ts-grid-actions__toggle:hover,
+.ts-tabulator-grid .ts-grid-actions__toggle.show {
+  border-color: rgba(58, 87, 232, 0.3);
+  background: #eef3ff;
+  color: #2f46c0;
+  box-shadow: 0 6px 16px rgba(58, 87, 232, 0.12);
+}
+
+.ts-tabulator-grid .ts-grid-actions__dots {
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: 0 0 1.125rem;
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.ts-tabulator-grid .ts-grid-actions__toggle.show .ts-grid-actions__dots {
+  transform: rotate(90deg);
+}
+
+body > .ts-grid-actions__menu,
+.ts-tabulator-grid .ts-grid-actions .dropdown-menu {
+  display: none;
+  min-width: 9.5rem;
+  margin-top: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 0.35rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px) scale(0.98);
+  transform-origin: top right;
+  transition: opacity 140ms ease, transform 140ms ease;
+  z-index: 2000;
+  box-shadow: 0 16px 36px rgba(17, 38, 146, 0.14) !important;
+}
+
+body > .ts-grid-actions__menu.show,
+.ts-tabulator-grid .ts-grid-actions .dropdown-menu.show {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+body > .ts-grid-actions__menu .dropdown-item,
+.ts-tabulator-grid .ts-grid-actions .dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.15rem;
+  padding: 0.45rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #344054;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+body > .ts-grid-actions__menu .dropdown-item svg,
+.ts-tabulator-grid .ts-grid-actions .dropdown-item svg {
+  flex: 0 0 auto;
+  color: #64748b;
+}
+
+body > .ts-grid-actions__menu .dropdown-item:hover,
+body > .ts-grid-actions__menu .dropdown-item:focus,
+.ts-tabulator-grid .ts-grid-actions .dropdown-item:hover,
+.ts-tabulator-grid .ts-grid-actions .dropdown-item:focus {
+  background: #eef3ff;
+  color: #2f46c0;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder .tabulator-placeholder {
+  color: #64748b;
+  padding: 1.25rem 1rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder .tabulator-placeholder span {
+  display: block;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.ts-tabulator-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 4vw, 2.5rem);
+  width: min(720px, 100%);
+  margin: 0 auto;
+  padding: clamp(1rem, 3vw, 2rem) clamp(0.5rem, 2vw, 1.5rem);
+  text-align: left;
+}
+
+.ts-tabulator-empty__content {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.ts-tabulator-empty__title {
+  margin: 0 0 0.45rem;
+  padding-left: 0.65rem;
+  border-left: 3px solid var(--ef-primary, #3a57e8);
+  color: #0f172a;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.ts-tabulator-empty__description {
+  margin: 0;
+  padding-left: 0.65rem;
+  color: #64748b;
+  font-size: clamp(0.82rem, 1.6vw, 0.92rem);
+  line-height: 1.5;
+  max-width: 36ch;
+}
+
+.ts-tabulator-empty__visual {
+  flex: 0 0 clamp(120px, 28vw, 180px);
+  display: grid;
+  place-items: center;
+  padding: clamp(0.65rem, 2vw, 1rem);
+  border-radius: 14px;
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--ef-primary, #3a57e8) 11%, #ffffff),
+    color-mix(in srgb, var(--ef-primary, #3a57e8) 4%, #f8fafc)
+  );
+  border: 1px solid color-mix(in srgb, var(--ef-primary, #3a57e8) 20%, #e2e8f0);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ef-primary, #3a57e8) 12%, transparent);
+}
+
+.ts-tabulator-empty__illustration {
+  width: 100%;
+  max-width: 160px;
+  aspect-ratio: 6 / 5;
+  background: linear-gradient(
+    155deg,
+    var(--ef-primary, #3a57e8) 0%,
+    var(--ef-primary-strong, #2f46c0) 100%
+  );
+  opacity: 0.9;
+  -webkit-mask-image: var(--ts-empty-mask);
+  mask-image: var(--ts-empty-mask);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.ts-tabulator-empty-fallback {
+  display: block;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: #64748b;
+}
+
+@media (max-width: 575.98px) {
+  .ts-tabulator-empty {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ts-tabulator-empty__description {
+    max-width: none;
+  }
+}
+
+.ts-section-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ts-tabs {
+  display: inline-flex;
+  gap: 0.25rem;
+  padding: 0.25rem;
+  border: 1px solid #e4e9f2;
+  border-radius: 8px;
+  background: #f7f9fd;
+}
+
+.ts-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2.1rem;
+  padding: 0 0.72rem;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #536179;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ts-tab:hover {
+  background: #eef3ff;
+  color: #2f46c0;
+}
+
+.ts-tab.active {
+  background: #3a57e8;
+  color: #ffffff;
+  box-shadow: 0 8px 18px rgba(58, 87, 232, 0.2);
+}
+
+.ts-grid-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.55rem;
+  color: #7b879a;
+  font-size: 0.84rem;
+}
+
+@media (max-width: 575.98px) {
+  .ts-tabs {
+    width: 100%;
+  }
+
+  .ts-tab {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .ts-grid-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer {
+  border-top: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #475569;
+  font-weight: 500;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-footer-contents {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.55rem;
+  padding: 0.8rem 0.95rem;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-paginator {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  margin: 0;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-pages {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page-size {
+  min-height: 2.15rem;
+  margin: 0 0.25rem;
+  padding: 0 0.65rem;
+  border: 1px solid #d7deea;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #26324d;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page {
+  min-width: 2.15rem;
+  min-height: 2.15rem;
+  margin: 0;
+  padding: 0 0.7rem;
+  border: 1px solid #d7deea;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #26324d;
+  line-height: 1;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page:not(:disabled):hover {
+  border-color: #3a57e8;
+  background: rgba(58, 87, 232, 0.08);
+  color: #2f46c0;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page.active {
+  border-color: #3a57e8;
+  background: #3a57e8;
+  color: #ffffff;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page:disabled {
+  background: #f4f6fb;
+  color: #a0a8b8;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+
+.ts-tabulator-grid.tabulator .tabulator-tableholder::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Host raíz Angular: sin caja extra que desalinee el layout Hope UI (sidebar fija + main-content). */
+ts-root {
+  display: block;
+  min-height: 100vh;
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --ts-sidebar-expanded-width: 16.2rem;
+    --ts-sidebar-mini-width: 4.8rem;
+  }
+
+  .sidebar {
+    width: var(--ts-sidebar-expanded-width);
+    max-width: var(--ts-sidebar-expanded-width);
+    z-index: 1030;
+  }
+
+  .sidebar.sidebar-mini {
+    width: var(--ts-sidebar-mini-width);
+    max-width: var(--ts-sidebar-mini-width);
+  }
+
+  .sidebar.sidebar-mini.sidebar-hover:hover {
+    width: var(--ts-sidebar-expanded-width);
+    max-width: var(--ts-sidebar-expanded-width);
+  }
+
+  .sidebar + .main-content {
+    margin-left: var(--ts-sidebar-expanded-width);
+    min-height: 100vh;
+    transition: margin-left 0.4s ease, width 0.4s ease;
+  }
+
+  ts-app-sidebar + .main-content {
+    margin-left: var(--ts-sidebar-expanded-width);
+    min-height: 100vh;
+    transition: margin-left 0.4s ease, width 0.4s ease;
+  }
+
+  .sidebar.sidebar-mini + .main-content {
+    margin-left: var(--ts-sidebar-mini-width);
+  }
+
+  ts-app-sidebar.ts-sidebar-mini + .main-content {
+    margin-left: var(--ts-sidebar-mini-width);
+  }
+
+  .sidebar.sidebar-mini.sidebar-hover:hover + .main-content {
+    margin-left: var(--ts-sidebar-mini-width);
+  }
+}
+
+/* Sidebar Hope UI: distinguir grupo expandido vs página seleccionada en submenú */
+.sidebar.sidebar-default.sidebar-base {
+  .sub-nav {
+    margin: 0.2rem 0 0.4rem 0.75rem;
+    padding-left: 0.5rem;
+    border-left: 2px solid rgba(var(--bs-primary-rgb), 0.18);
+  }
+
+  .sub-nav .nav-link.ts-nav-sub {
+    padding: 0.42rem 0.9rem;
+    min-height: 2.2rem;
+    border-radius: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Página actual dentro del submenú */
+  .sub-nav .nav-link.ts-nav-sub.active {
+    background: var(--bs-primary) !important;
+    color: var(--bs-white) !important;
+    box-shadow: 0 8px 18px -10px rgba(var(--bs-primary-rgb), 0.45) !important;
+    font-weight: 600;
+  }
+
+  /* Grupo con ruta activa o abierto: resalte suave (no el mismo azul sólido) */
+  .nav-link.ts-nav-group.ts-nav-group--active,
+  .nav-link.ts-nav-group.ts-nav-group--open {
+    background: rgba(var(--bs-primary-rgb), 0.1) !important;
+    color: var(--bs-primary) !important;
+    box-shadow: none !important;
+    font-weight: 600;
+  }
+
+  .nav-link.ts-nav-group.ts-nav-group--active .icon,
+  .nav-link.ts-nav-group.ts-nav-group--open .icon,
+  .nav-link.ts-nav-group.ts-nav-group--active .right-icon,
+  .nav-link.ts-nav-group.ts-nav-group--open .right-icon {
+    color: var(--bs-primary);
+  }
+
+  .sub-nav .nav-link.ts-nav-sub:not(.active):hover {
+    background: rgba(var(--bs-primary-rgb), 0.07) !important;
+    color: var(--bs-primary) !important;
+    box-shadow: none !important;
+  }
+
+  /* Inicio y enlaces directos sin submenú: azul sólido al estar activos */
+  .iq-main-menu > .nav-item:not(:has(.sub-nav)) > .nav-link.active {
+    background: var(--bs-primary) !important;
+    color: var(--bs-white) !important;
+    box-shadow: 0 10px 20px -10px rgba(var(--bs-primary-rgb), 0.38) !important;
+    font-weight: 600;
+  }
+
+  /* Evitar que Hope UI trate el grupo como ítem seleccionado (mismo tono que hijo) */
+  .nav-link.ts-nav-group.active,
+  .nav-link.ts-nav-group[aria-expanded='true'] {
+    background: rgba(var(--bs-primary-rgb), 0.1) !important;
+    color: var(--bs-primary) !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Modales compactos (facturación, maestros, admin) */
+.ts-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1090;
+  background: rgba(15, 23, 42, 0.38);
+  backdrop-filter: blur(3px);
+}
+
+.ts-form-modal {
+  position: fixed;
+  z-index: 1100;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  width: min(520px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  overflow: hidden;
+}
+
+.ts-form-modal__form,
+.ts-form-modal > form {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Compat: form con clase __body (campos + footer en el mismo form) */
+.ts-form-modal > form.ts-form-modal__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0.8rem;
+  padding: 1rem 1.1rem 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ts-form-modal > form.ts-form-modal__body > .ts-form-modal__footer {
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  margin: 0.25rem -1.1rem 0;
+  padding: 0.85rem 1.1rem 1.05rem;
+}
+
+.ts-form-modal--compact {
+  width: min(440px, calc(100vw - 2rem));
+}
+
+.ts-form-modal--detail {
+  width: min(560px, calc(100vw - 2rem));
+}
+
+.ts-form-modal__icon {
+  display: grid;
+  place-items: center;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  color: #3a57e8;
+  background: linear-gradient(180deg, #f6f8ff 0%, #eef3ff 100%);
+  border: 1px solid #dfe7ff;
+  border-radius: 12px;
+}
+
+.ts-detail-kv {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ts-detail-kv__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.55rem 0.7rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.ts-detail-kv__row--stack {
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ts-detail-kv__row span {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ts-detail-kv__row strong {
+  color: #0f172a;
+  font-size: 0.84rem;
+  font-weight: 650;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.ts-detail-kv__row--stack strong {
+  text-align: left;
+  width: 100%;
+}
+
+.ts-form-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.ts-form-modal__header--compact {
+  padding: 0.9rem 1rem;
+}
+
+.ts-form-modal__head-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.ts-form-modal__eyebrow {
+  color: #64748b;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ts-form-modal__header h3 {
+  color: #0f172a;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.ts-form-modal__subtitle {
+  margin-top: 0.2rem;
+  color: #64748b;
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.ts-form-modal__close {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid rgba(203, 213, 225, 0.95);
+  border-radius: 10px;
+  color: #64748b;
+  background: #fff;
+  cursor: pointer;
+}
+
+.ts-form-modal__close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.ts-form-modal__body {
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem 1.1rem 0.25rem;
+}
+
+.ts-form-modal__body .form-label {
+  margin-bottom: 0.25rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.ts-form-modal__footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.85rem 1.1rem 1.05rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.95);
+  background: linear-gradient(180deg, #fafbfc 0%, #f1f5f9 100%);
+}
+
+
+.factura-field-label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.factura-inline-add {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--bs-primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.factura-inline-add:hover {
+  text-decoration: underline;
+}
+
+.factura-section-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.65rem;
+}
+
+/* Scroll nativo gris: anula el thumb azul (#3a57e8) de Hope UI y evita smooth-scrollbar (data-scrollbar). */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #94a3b8 !important;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b !important;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}
+
+.data-scrollbar {
+  overflow: auto !important;
+}
+
+/* Badges de estado SRI / correo (monitores y listados de documentos) */
+.ts-sri-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.3rem 0.68rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  vertical-align: middle;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+}
+
+.ts-sri-badge__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: currentColor;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.55);
+}
+
+.ts-sri-badge--success {
+  color: #0a5c34;
+  background: linear-gradient(135deg, rgba(25, 135, 84, 0.22), rgba(25, 135, 84, 0.09));
+  border-color: rgba(25, 135, 84, 0.38);
+}
+
+.ts-sri-badge--draft {
+  color: #5c4a00;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.35), rgba(255, 193, 7, 0.12));
+  border-color: rgba(202, 138, 4, 0.45);
+}
+
+.ts-sri-badge--info {
+  color: #055160;
+  background: linear-gradient(135deg, rgba(13, 202, 240, 0.28), rgba(13, 202, 240, 0.1));
+  border-color: rgba(8, 145, 178, 0.4);
+}
+
+.ts-sri-badge--warning {
+  color: #7c4a03;
+  background: linear-gradient(135deg, rgba(253, 126, 20, 0.28), rgba(253, 126, 20, 0.1));
+  border-color: rgba(234, 88, 12, 0.42);
+}
+
+.ts-sri-badge--danger {
+  color: #842029;
+  background: linear-gradient(135deg, rgba(220, 53, 69, 0.26), rgba(220, 53, 69, 0.1));
+  border-color: rgba(220, 53, 69, 0.42);
+}
+
+.ts-sri-badge--neutral {
+  color: #334155;
+  background: linear-gradient(135deg, rgba(148, 163, 184, 0.28), rgba(148, 163, 184, 0.1));
+  border-color: rgba(100, 116, 139, 0.35);
+}
+
+.ts-sri-badge-hint {
+  margin-top: 0.28rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  line-height: 1.35;
+  color: #b42318;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.tabulator-cell .ts-sri-badge {
+  display: inline-flex;
+  margin: 0.12rem 0;
+}
+
+.tabulator-cell[class*='estado'] .tabulator-cell-wrap,
+.tabulator-cell .ts-sri-badge-hint {
+  max-width: 100%;
+}
+
+/* Altura de grids listado: ~15–20% más que antes, acotada al viewport (solo Tabulator) */
+:root {
+  --ef-grid-height: min(620px, calc(100vh - 15.5rem));
+}
+
+.ce-resumen-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  align-items: center;
+  margin-top: 0.25rem;
+}
+
+.ce-resumen-badges .ts-sri-badge {
+  font-size: 0.68rem;
+  padding: 0.22rem 0.55rem;
+}
+
+.sidebar .sidebar-body.ts-native-scroll {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 92vh;
+  scrollbar-width: thin;
+  scrollbar-color: #94a3b8 #f1f5f9;
+}

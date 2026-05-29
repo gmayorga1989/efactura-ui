@@ -1,0 +1,249 @@
+{"k":"common.noSession","en":"No active session."}
+{"k":"users.loadError","en":"Could not load users."}
+{"k":"users.missingMembershipEdit","en":"The user has no membershipId to edit."}
+{"k":"users.nameRequired","en":"Enter the user name."}
+{"k":"users.updated","en":"User updated."}
+{"k":"roles.companyRequired","en":"Select a company to view roles."}
+{"k":"roles.general","en":"General"}
+{"k":"roles.role","en":"Role"}
+{"k":"roles.loadError","en":"Could not load roles."}
+{"k":"roles.systemEditError","en":"System roles cannot be edited."}
+{"k":"roles.codeFormatError","en":"The code only allows uppercase letters, numbers and underscore."}
+{"k":"roles.nameRequired","en":"Enter the role name."}
+{"k":"roles.created","en":"Role created."}
+{"k":"roles.updated","en":"Role updated."}
+{"k":"roles.saveError","en":"Could not save the role."}
+{"k":"roles.activateTitle","en":"Activate role"}
+{"k":"roles.inactivateTitle","en":"Inactivate role"}
+{"k":"roles.activateMessage","en":"The role can be assigned again."}
+{"k":"roles.inactivateMessage","en":"The role will become inactive."}
+{"k":"roles.deleteTitle","en":"Delete role"}
+{"k":"roles.deleteMessage","en":"Role {{code}} will be deleted. This only applies if it has no assigned users."}
+{"k":"roles.systemModifyError","en":"System roles cannot be modified."}
+{"k":"roles.activated","en":"Role activated."}
+{"k":"roles.inactivated","en":"Role inactivated."}
+{"k":"roles.statusError","en":"Could not change status."}
+{"k":"roles.systemDeleteError","en":"System roles cannot be deleted."}
+{"k":"roles.assignedDeleteError","en":"The role has assigned users; use inactivate."}
+{"k":"roles.deleted","en":"Role deleted."}
+{"k":"roles.deleteError","en":"Could not delete the role."}
+{"k":"invitations.companyRequired","en":"Select a company to view invitations."}
+{"k":"invitations.supportUrl","en":"Support URL"}
+{"k":"invitations.invitation","en":"Invitation"}
+{"k":"invitations.resend","en":"Resend"}
+{"k":"invitations.cancel","en":"Cancel"}
+{"k":"invitations.loadError","en":"Could not load invitations."}
+{"k":"invitations.createRequired","en":"Complete email and role."}
+{"k":"invitations.emailNotSent","en":"The invitation was created, but the email was not sent."}
+{"k":"invitations.created","en":"Invitation created."}
+{"k":"invitations.createError","en":"Could not create the invitation."}
+{"k":"invitations.notPending","en":"The invitation is no longer pending."}
+{"k":"invitations.cancelTitle","en":"Cancel invitation"}
+{"k":"invitations.cancelMessage","en":"The pending invitation for {{email}} will be cancelled."}
+{"k":"invitations.cancelConfirm","en":"Cancel invitation"}
+{"k":"invitations.cancelOnlyPending","en":"Only a pending invitation can be cancelled."}
+{"k":"invitations.cancelledOne","en":"Invitation cancelled."}
+{"k":"invitations.cancelError","en":"Could not cancel the invitation."}
+{"k":"invitations.resendOnlyPending","en":"Only a pending invitation can be resent."}
+{"k":"invitations.resent","en":"Invitation resent."}
+{"k":"invitations.resendError","en":"Could not resend the invitation."}
+{"k":"invitations.thisUser","en":"this user"}
+{"k":"branches.pointNameRequired","en":"Enter the emission point name."}
+{"k":"masters.addressRequired","en":"Address is required."}
+{"k":"masters.rucInvalid","en":"Enter a valid 13-digit RUC."}
+{"k":"masters.rucNotFound","en":"No information was found for the queried RUC."}
+{"k":"masters.sriLoaded","en":"SRI information loaded."}
+{"k":"masters.rucLookupError","en":"Could not query the RUC."}
+{"k":"masters.productRequired","en":"Complete main code and description."}
+{"k":"masters.loadRecordError","en":"Could not load the record."}
+{"k":"masters.saveRecordError","en":"Could not save the record."}
+{"k":"masters.thirdPartyRequired","en":"Complete identification, business name and check email format."}
+{"k":"masters.rucDigitsError","en":"The RUC must have 13 digits."}
+{"k":"masters.idCardDigitsError","en":"The ID card must have 10 digits."}
+{"k":"masters.passportLengthError","en":"Passport must be between 3 and 20 characters."}
+{"k":"masters.mainAddressRequired","en":"A main address must exist."}
+{"k":"masters.duplicateLoaded","en":"The identification already exists. The existing third party was loaded so you can update its classification or data."}
+{"k":"documents.newDraft","en":"New draft"}
+{"k":"documents.closeForm","en":"Close form"}
+{"k":"documents.companyRequired","en":"Select a company to create documents."}
+{"k":"documents.permissionRequired","en":"Your profile does not include permissions for this transaction."}
+{"k":"documents.masterReceiver","en":"Master receiver/supplier"}
+{"k":"documents.selectReceiver","en":"Select..."}
+{"k":"documents.emissionPoint","en":"Emission point"}
+{"k":"documents.issueDate","en":"Issue date"}
+{"k":"documents.receiverIdType","en":"ID type"}
+{"k":"documents.receiverIdentification","en":"Identification"}
+{"k":"documents.receiver","en":"Receiver"}
+{"k":"documents.businessName","en":"Business name"}
+{"k":"documents.subtotal","en":"Subtotal"}
+{"k":"documents.discount","en":"Discount"}
+{"k":"documents.vat","en":"VAT"}
+{"k":"documents.total","en":"Total"}
+{"k":"documents.customData","en":"Custom data JSON"}
+{"k":"documents.createDraft","en":"Create draft"}
+{"k":"documents.number","en":"Number"}
+{"k":"documents.date","en":"Date"}
+{"k":"documents.sriStatus","en":"SRI status"}
+{"k":"documents.invalidJson","en":"Custom data must be valid JSON."}
+{"k":"documents.draftCreated","en":"Draft created."}
+{"k":"documents.createDraftError","en":"Could not create draft."}
+{"k":"monitor.title","en":"Electronic documents"}
+{"k":"monitor.subtitle","en":"Monitor issued documents, authorizations and SRI statuses."}
+{"k":"monitor.eyebrow","en":"Monitor"}
+{"k":"monitor.companyRequired","en":"Select a company to monitor documents."}
+{"k":"monitor.permissionRequired","en":"Your profile does not include permissions to query documents."}
+{"k":"monitor.clear","en":"Clear"}
+{"k":"monitor.apply","en":"Apply"}
+{"k":"monitor.type","en":"Type"}
+{"k":"monitor.from","en":"From"}
+{"k":"monitor.to","en":"To"}
+{"k":"monitor.establishmentShort","en":"Estab."}
+{"k":"monitor.emissionPointShort","en":"Emission pt."}
+{"k":"monitor.accessKey","en":"Access key"}
+{"k":"monitor.sequence","en":"Sequence"}
+{"k":"monitor.authorization","en":"Authorization"}
+{"k":"monitor.authorizationDate","en":"Authorization date"}
+{"k":"invoice.title","en":"Electronic invoices"}
+{"k":"invoice.subtitle","en":"Issued documents and simplified invoice issuing."}
+{"k":"invoice.eyebrow","en":"Issuing"}
+{"k":"invoice.new","en":"New invoice"}
+{"k":"invoice.closeForm","en":"Close form"}
+{"k":"invoice.companyRequired","en":"Select a company with tenant context to view invoices."}
+{"k":"invoice.listPermissionRequired","en":"Your profile does not include permission to view documents."}
+{"k":"invoice.emitTitle","en":"Issue invoice"}
+{"k":"invoice.extraFields","en":"Additional fields"}
+{"k":"invoice.customerMaster","en":"Master customer"}
+{"k":"invoice.selectCustomer","en":"Select customer..."}
+{"k":"invoice.receiverEmail","en":"Receiver email (optional)"}
+{"k":"invoice.lineOne","en":"Line 1"}
+{"k":"invoice.itemMaster","en":"Master product or service"}
+{"k":"invoice.selectItem","en":"Select product/service..."}
+{"k":"invoice.quantity","en":"Quantity"}
+{"k":"invoice.unitPriceShort","en":"Unit price"}
+{"k":"invoice.emit","en":"Issue"}
+{"k":"invoice.pointsLoadError","en":"Could not load emission points."}
+{"k":"invoice.selectPoint","en":"Choose an emission point."}
+{"k":"invoice.completeField","en":"Complete field: {{field}}"}
+{"k":"invoice.issued","en":"Issued: {{number}} ({{status}})."}
+{"k":"invoice.emitError","en":"Issue failed. Check certificate, emission point and data."}
+{"k":"invoice.rideError","en":"Could not download RIDE."}
+{"k":"invoice.xmlError","en":"Could not download XML. It may not be authorized yet."}
+{"k":"dashboard.title","en":"Home"}
+{"k":"dashboard.subtitle","en":"Tenant {{tenant}} dashboard - Ecuador electronic invoicing."}
+{"k":"dashboard.backend","en":"Backend"}
+{"k":"dashboard.backendText","en":"Spring Boot in backend/efactura-app."}
+{"k":"dashboard.infra","en":"Infra"}
+{"k":"dashboard.infraText","en":"docker compose up -d at the monorepo root."}
+{"k":"dashboard.integrations","en":"Integrations"}
+{"k":"dashboard.apiKeysAllowed","en":"Manage API keys for the public API."}
+{"k":"dashboard.apiKeysRestricted","en":"API keys are managed by company or platform administration profiles."}
+{"k":"apiKeys.title","en":"API keys"}
+{"k":"apiKeys.subtitle","en":"Create keys to call /api/public/v1 with the X-Api-Key header."}
+{"k":"apiKeys.eyebrow","en":"Integrations"}
+{"k":"apiKeys.newKey","en":"New key"}
+{"k":"apiKeys.name","en":"Name"}
+{"k":"apiKeys.namePlaceholder","en":"Name (e.g. ERP production)"}
+{"k":"apiKeys.copyNow","en":"Copy the value now (it will not be shown again):"}
+{"k":"apiKeys.existing","en":"Existing keys"}
+{"k":"apiKeys.empty","en":"There are no keys yet."}
+{"k":"apiKeys.prefix","en":"Prefix"}
+{"k":"apiKeys.revoke","en":"Revoke"}
+{"k":"apiKeys.loadError","en":"Could not load the list (session expired)."}
+{"k":"apiKeys.createError","en":"Could not create the key."}
+{"k":"apiKeys.revokeError","en":"Could not revoke."}
+{"k":"plan.title","en":"My plan"}
+{"k":"plan.subtitle","en":"Current period usage and issuing limits."}
+{"k":"plan.eyebrow","en":"Subscription"}
+{"k":"plan.signInHelp","en":"to view your plan."}
+{"k":"plan.selectCompany","en":"Select a company to view its associated plan."}
+{"k":"plan.period","en":"Period"}
+{"k":"plan.issuedMonth","en":"Issued this month"}
+{"k":"plan.noMonthlyLimit","en":"No monthly limit configured."}
+{"k":"plan.limit","en":"Limit"}
+{"k":"plan.documents","en":"documents"}
+{"k":"plan.modulesConfig","en":"Modules (configuration)"}
+{"k":"plan.noFlags","en":"No flags in modulosActivos."}
+{"k":"plan.loadError","en":"Could not load the plan."}
+{"k":"reports.title","en":"Reports"}
+{"k":"reports.subtitle","en":"Summary by SRI status and amount sample."}
+{"k":"reports.eyebrow","en":"Analytics"}
+{"k":"reports.signInHelp","en":"to view reports."}
+{"k":"reports.selectCompany","en":"Select a company to view tenant data."}
+{"k":"reports.permissionRequired","en":"Your profile does not include the reports permission."}
+{"k":"reports.sampleDocuments","en":"Documents (record, sample)"}
+{"k":"reports.apiTotal","en":"Total according to API (page 0, up to {{pageSize}})."}
+{"k":"reports.sampleAmount","en":"Amount (same sample)"}
+{"k":"reports.periodAggregation","en":"Aggregation period"}
+{"k":"reports.bySriStatus","en":"Documents by SRI status"}
+{"k":"reports.endpointInfo","en":"Data from GET /api/web/v1/reportes/comprobantes-por-estado."}
+{"k":"reports.detailIn","en":"Detailed list in"}
+{"k":"reports.quantity","en":"Quantity"}
+{"k":"reports.aggregationError","en":"Could not load aggregations."}
+{"k":"reports.dataError","en":"Could not load data."}
+{"k":"coming.eyebrow","en":"Under construction"}
+{"k":"coming.defaultTitle","en":"Module"}
+{"k":"coming.message","en":"This module will be integrated with the backend in a later iteration."}
+{"k":"coming.backHome","en":"Back to home"}
+{"k":"company.title","en":"Company"}
+{"k":"company.subtitle","en":"General data, logo and signing certificate."}
+{"k":"company.eyebrow","en":"Administration"}
+{"k":"company.selectCompany","en":"Select a company to manage configuration."}
+{"k":"company.adminOnly","en":"Only administrators can view this screen."}
+{"k":"company.selectedCompany","en":"Selected company"}
+{"k":"company.noStatus","en":"No status"}
+{"k":"company.dataTitle","en":"Company data"}
+{"k":"company.dataSubtitle","en":"Tax and operational information registered for issuing."}
+{"k":"company.saveChanges","en":"Save changes"}
+{"k":"company.businessName","en":"Business name"}
+{"k":"company.tradeName","en":"Trade name"}
+{"k":"company.matrixAddress","en":"Head office address"}
+{"k":"company.timezone","en":"Time zone"}
+{"k":"company.sriEnvironment","en":"SRI environment"}
+{"k":"company.test","en":"Test"}
+{"k":"company.production","en":"Production"}
+{"k":"company.emissionType","en":"Emission type"}
+{"k":"company.normal","en":"Normal"}
+{"k":"company.specialTaxpayer","en":"Special taxpayer"}
+{"k":"company.accountingRequired","en":"Required to keep accounting"}
+{"k":"company.frequentExporter","en":"Frequent exporter"}
+{"k":"company.artisanQualification","en":"Artisan qualification"}
+{"k":"company.artisanCode","en":"Artisan code"}
+{"k":"company.withholdingAgent","en":"Withholding agent"}
+{"k":"company.currentContextInfo","en":"Changes are saved in the current company using the authenticated context."}
+{"k":"company.logoRules","en":"PNG, JPEG, WebP or SVG. Maximum 2MB."}
+{"k":"company.uploadLogo","en":"Upload logo"}
+{"k":"company.certificate","en":"Certificate"}
+{"k":"company.certificateRules","en":".p12 or .pfx file for electronic signature."}
+{"k":"company.file","en":"File"}
+{"k":"company.password","en":"Password"}
+{"k":"company.optionalAlias","en":"Optional alias"}
+{"k":"company.uploadCertificate","en":"Upload certificate"}
+{"k":"company.loadedCertificates","en":"Loaded certificates"}
+{"k":"company.loadedCertificatesHelp","en":"Manage which certificate is used to sign documents."}
+{"k":"company.noCertificates","en":"No certificates loaded."}
+{"k":"company.issuer","en":"Issuer"}
+{"k":"company.validity","en":"Validity"}
+{"k":"company.signature","en":"Signature"}
+{"k":"company.notActive","en":"Not active"}
+{"k":"company.suggested","en":"suggested"}
+{"k":"company.loadError","en":"Could not load the company."}
+{"k":"company.rucInvalid","en":"The RUC must have exactly 13 digits."}
+{"k":"company.businessNameRequired","en":"Business name is required."}
+{"k":"company.artisanCodeRequired","en":"Artisan code is required when artisan qualification is active."}
+{"k":"company.updated","en":"Company updated."}
+{"k":"company.updateError","en":"Could not update the company."}
+{"k":"company.logoTypeError","en":"Logo format not allowed. Use PNG, JPEG, WebP or SVG."}
+{"k":"company.logoSizeError","en":"Logo cannot exceed 2MB."}
+{"k":"company.logoUploaded","en":"Logo uploaded."}
+{"k":"company.logoUploadError","en":"Could not upload logo."}
+{"k":"company.selectCertificateFile","en":"Select a .p12 or .pfx file."}
+{"k":"company.certificateExtensionError","en":"The certificate must have a .p12 or .pfx extension."}
+{"k":"company.certificatePasswordRequired","en":"Certificate password is required."}
+{"k":"company.certificateUploaded","en":"Certificate uploaded."}
+{"k":"company.certificateUploadError","en":"Could not upload certificate."}
+{"k":"company.certificateActivated","en":"Certificate active for signing."}
+{"k":"company.certificateActivateError","en":"Could not activate certificate."}
+{"k":"company.certificatesLoadError","en":"Could not load certificates."}
+{"k":"company.notFoundOrEndpointError","en":"Incorrect endpoint or company not found."}
+{"k":"company.patchUnsupportedError","en":"The backend does not accept PATCH to update company in this deployed version."}
+{"k":"company.invalidDataError","en":"Invalid data, incorrect format or empty file."}

@@ -1,0 +1,287 @@
+[1m[33mComponent HMR has been enabled, see https://angular.dev/hmr for more info.[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2552: Cannot find name 'writeAccessToken'. Did you mean 'readAccessToken'?[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/session.resolver.ts:30:8:
+[37m      30 │         [32mwriteAccessToken[37m(null);
+         ╵         [32m~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'writeAccessToken'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:83:4:
+[37m      83 │     [32mwriteAccessToken[37m(null);
+         ╵     [32m~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2345: Argument of type 'readonly ["/t", string, ...string[]]' is not assignable to parameter of type 'any[]'.
+  The type 'readonly ["/t", string, ...string[]]' is 'readonly' and cannot be assigned to the mutable type 'any[]'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/sync-tenant-route.util.ts:22:23:
+[37m      22 │   void router.navigate([32mcommands[37m, { replaceUrl: true });
+         ╵                        [32m~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module './auth.interceptor.tokens' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:14:7:
+[37m      14 │ } from [32m'./auth.interceptor.tokens'[37m;
+         ╵        [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module './auth.interceptor.tokens' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:106:7:
+[37m      106 │ } from [32m'./auth.interceptor.tokens'[37m;
+          ╵        [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "./auth.interceptor.tokens"[0m
+
+    src/app/core/auth.interceptor.ts:7:104:
+[37m      7 │ ...AccessToken, writeRefreshToken, } from [32m'./auth.interceptor.tokens'[37m;
+        ╵                                           [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:17:29:
+[37m      17 │ let refreshInFlight: Promise<[32mTokenResponse[37m> | null = null;
+         ╵                              [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:19:41:
+[37m      19 │ function refreshTokensDeduped(): Promise<[32mTokenResponse[37m> {
+         ╵                                          [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2300: Duplicate identifier 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:6:14:
+[37m      6 │ import type { [32mTokenResponse[37m } from './models/me.model';
+        ╵               [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2300: Duplicate identifier 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:7:14:
+[37m      7 │ import type { [32mTokenResponse[37m } from './models/me.model';
+        ╵               [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2300: Duplicate identifier 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:6:14:
+[37m      6 │ import type { [32mTokenResponse[37m } from './models/me.model';
+        ╵               [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2300: Duplicate identifier 'TokenResponse'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:7:14:
+[37m      7 │ import type { [32mTokenResponse[37m } from './models/me.model';
+        ╵               [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS1109: Expression expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/auth.interceptor.ts:44:2:
+[37m      44 │   [32m)[37m;
+         ╵   [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mUnexpected ")"[0m
+
+    src/app/core/auth.interceptor.ts:32:4:
+[37m      32 │     [32m)[37m;
+         ╵     [32m^[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'SessionWorkflowService'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:75:37:
+[37m      75 │   private readonly workflow = inject([32mSessionWorkflowService[37m);
+         ╵                                      [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'SessionWorkflowService'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:75:37:
+[37m      75 │   private readonly workflow = inject([32mSessionWorkflowService[37m);
+         ╵                                      [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2571: Object is of type 'unknown'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:83:4:
+[37m      83 │     [32mthis.workflow[37m.logoutServer().subscribe({
+         ╵     [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2304: Cannot find name 'SessionWorkflowService'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:74:37:
+[37m      74 │   private readonly workflow = inject([32mSessionWorkflowService[37m);
+         ╵                                      [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2571: Object is of type 'unknown'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/features/shell/tenant-shell.component.ts:82:4:
+[37m      82 │     [32mthis.workflow[37m.logoutServer().subscribe({
+         ╵     [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'tenant' is private and only accessible within class 'ComingSoonComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/coming-soon/coming-soon.component.ts:15:30:
+[37m      15 │       <a [routerLink]="['/t', [32mtenant[37m.tenantSlug(), 'dashboard']" c...
+         ╵                               [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'tenant' is private and only accessible within class 'ComingSoonComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/coming-soon/coming-soon.component.ts:15:30:
+[37m      15 │       <a [routerLink]="['/t', [32mtenant[37m.tenantSlug(), 'dashboard']" c...
+         ╵                               [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS1005: '}' expected.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/core/session/session-context.service.ts:90:0:
+[37m      90 │ [32m[37m
+         ╵ [32m^[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'tenant' is private and only accessible within class 'ComingSoonComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/coming-soon/coming-soon.component.ts:15:30:
+[37m      15 │       <a [routerLink]="['/t', [32mtenant[37m.tenantSlug(), 'dashboard']" c...
+         ╵                               [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'tenant' is private and only accessible within class 'ComingSoonComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/coming-soon/coming-soon.component.ts:15:30:
+[37m      15 │       <a [routerLink]="['/t', [32mtenant[37m.tenantSlug(), 'dashboard']" c...
+         ╵                               [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1: Property 'tenant' is private and only accessible within class 'ComingSoonComponent'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/coming-soon/coming-soon.component.ts:15:30:
+[37m      15 │       <a [routerLink]="['/t', [32mtenant[37m.tenantSlug(), 'dashboard']" c...
+         ╵                               [32m~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:41:
+[37m      122 │                 @if (puntosPorEst[e.id]?.[32mlength[37m) {
+          ╵                                          [32m~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:41:
+[37m      122 │                 @if (puntosPorEst[e.id]?.[32mlength[37m) {
+          ╵                                          [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG9: Property 'totalRegistro' does not exist on type 'ReportesPage'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/reportes/reportes.ts:45:34:
+[37m      45 │               <h3 class="mb-0">{{ [32mtotalRegistro[37m }}</h3>
+         ╵                                   [32m~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:41:
+[37m      122 │                 @if (puntosPorEst[e.id]?.[32mlength[37m) {
+          ╵                                          [32m~~~~~~[0m
+
+[39m[22m
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2339: Property 'totalMuestra' does not exist on type 'ReportesPage'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/reportes/reportes.ts:104:15:
+[37m      104 │           this.[32mtotalMuestra[37m = p.content.length;
+          ╵                [32m~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:41:
+[37m      122 │                 @if (puntosPorEst[e.id]?.[32mlength[37m) {
+          ╵                                          [32m~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8107: The left side of this optional chain operation does not include 'null' or 'undefined' in its type, therefore the '?.' operator can be replaced with the '.' operator.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:41:
+[37m      122 │                 @if (puntosPorEst[e.id]?.[32mlength[37m) {
+          ╵                                          [32m~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:122:22:
+[37m      122 │                 @if (([32mpuntosPorEst[e.id] ?? [][37m).length) {
+          ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:124:31:
+[37m      124 │ ...               @for (p of [32mpuntosPorEst[e.id] ?? [][37m; track p.id) {
+          ╵                              [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m
+[1m[33m[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mNG8102: The left side of this nullish coalescing operation does not include 'null' or 'undefined' in its type, therefore the '??' operator can be safely removed.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/configuracion-empresa/configuracion-empresa.ts:119:31:
+[37m      119 │               @let puntosEst = [32mpuntosPorEst[e.id] ?? [][37m;
+          ╵                                [32m~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

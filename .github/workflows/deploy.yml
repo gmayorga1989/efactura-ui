@@ -1,0 +1,61 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: API_EFACTURA_CI_CD
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Build production bundle
+        run: |
+          npm ci
+          npm run build -- --configuration production
+
+      - name: Pack static assets
+        run: tar -czf efactura-ui-dist.tar.gz -C dist/efactura-ec/browser .
+
+      - uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EFACTURA_UI_DEPLOY_HOST }}
+          username: ${{ secrets.EFACTURA_UI_DEPLOY_USER }}
+          key: ${{ secrets.EFACTURA_UI_DEPLOY_SSH_KEY }}
+          port: ${{ secrets.EFACTURA_UI_DEPLOY_PORT }}
+          source: efactura-ui-dist.tar.gz
+          target: /opt/efactura-ui
+
+      - uses: appleboy/ssh-action@v1.2.0
+        env:
+          APP_DIR: ${{ secrets.EFACTURA_UI_DEPLOY_PATH }}
+        with:
+          host: ${{ secrets.EFACTURA_UI_DEPLOY_HOST }}
+          username: ${{ secrets.EFACTURA_UI_DEPLOY_USER }}
+          key: ${{ secrets.EFACTURA_UI_DEPLOY_SSH_KEY }}
+          port: ${{ secrets.EFACTURA_UI_DEPLOY_PORT }}
+          envs: APP_DIR
+          script: |
+            set -euo pipefail
+            DEPLOY_DIR="${APP_DIR:-/opt/efactura-ui}"
+            cd "$DEPLOY_DIR"
+            rm -rf html
+            mkdir -p html
+            tar -xzf efactura-ui-dist.tar.gz -C html
+            rm -f efactura-ui-dist.tar.gz
+            sudo nginx -t
+            sudo systemctl reload nginx
+            echo "eFactura UI desplegado en ${DEPLOY_DIR}/html"
