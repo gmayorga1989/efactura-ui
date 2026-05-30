@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main]
+    branches: [main, master]
   workflow_dispatch:
 
 concurrency:
@@ -16,7 +16,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: EFACTURA_UI_CI_CD
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
     steps:
       - uses: actions/checkout@v4
 
