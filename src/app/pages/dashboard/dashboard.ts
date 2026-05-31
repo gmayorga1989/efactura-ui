@@ -167,10 +167,12 @@ interface SetupItem {
                 [class.ts-home-kpi--danger]="kpi.status === 'danger'"
               >
                 <div class="ts-home-kpi__icon">{{ iconGlyph(kpi.icon) }}</div>
-                <div>
-                  <p>{{ kpi.label }}</p>
-                  <strong>{{ kpi.value }}</strong>
-                  <span>{{ kpi.hint }}</span>
+                <div class="ts-home-kpi__body">
+                  <p class="ts-home-kpi__label">{{ kpi.label }}</p>
+                  <strong class="ts-home-kpi__value">{{ kpi.value }}</strong>
+                  @if (kpi.hint) {
+                    <span class="ts-home-kpi__hint">{{ kpi.hint }}</span>
+                  }
                 </div>
               </article>
             }
@@ -325,8 +327,8 @@ interface SetupItem {
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 1.15rem;
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 52%, #eef7f5 100%);
+        padding: 1rem;
+        background: var(--lux-hero-gradient);
       }
 
       .ts-home-company {
@@ -342,7 +344,7 @@ interface SetupItem {
         width: 4rem;
         height: 4rem;
         border-radius: 9px;
-        background: #0f766e;
+        background: var(--lux-gradient-diagonal);
         color: #fff;
         font-size: 1.2rem;
         font-weight: 700;
@@ -359,10 +361,9 @@ interface SetupItem {
 
       .ts-home-company__eyebrow,
       .ts-home-panel__head p,
-      .ts-home-kpi p,
       .ts-home-generated {
         margin: 0;
-        color: #64748b;
+        color: var(--lux-app-muted);
         font-size: 0.76rem;
       }
 
@@ -415,45 +416,62 @@ interface SetupItem {
       }
 
       .ts-home-pill--soft {
-        background: #e0f2fe;
-        color: #075985;
+        background: var(--lux-primary-soft);
+        color: var(--lux-primary-strong);
       }
 
       .ts-home-kpis {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.8rem;
+        gap: 0.55rem;
       }
 
       .ts-home-kpi {
         display: flex;
-        align-items: flex-start;
-        gap: 0.75rem;
-        padding: 0.9rem;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.6rem 0.7rem;
       }
 
       .ts-home-kpi__icon {
         display: grid;
         place-items: center;
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 8px;
-        background: #ecfeff;
-        color: #0f766e;
+        width: 1.85rem;
+        height: 1.85rem;
+        border-radius: 0.5rem;
+        background: var(--lux-cyan-soft);
+        color: var(--lux-primary-strong);
+        font-size: 0.75rem;
         font-weight: 800;
         flex-shrink: 0;
       }
 
-      .ts-home-kpi strong {
-        display: block;
-        color: #0f172a;
-        font-size: 1.35rem;
-        line-height: 1.2;
+      .ts-home-kpi__label {
+        margin: 0;
+        color: var(--lux-app-muted);
+        font-size: 0.7rem;
+        font-weight: 600;
       }
 
-      .ts-home-kpi span {
-        color: #64748b;
-        font-size: 0.72rem;
+      .ts-home-kpi__value {
+        display: block;
+        color: var(--lux-app-ink);
+        font-size: 1.05rem;
+        line-height: 1.15;
+        font-weight: 700;
+      }
+
+      .ts-home-kpi__hint {
+        display: block;
+        color: var(--lux-app-muted);
+        font-size: 0.68rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ts-home-kpi__body {
+        min-width: 0;
       }
 
       .ts-home-kpi--success .ts-home-kpi__icon {
@@ -502,7 +520,7 @@ interface SetupItem {
       }
 
       .ts-home-panel__head strong {
-        color: #0f766e;
+        color: var(--lux-primary);
         font-size: 1rem;
         white-space: nowrap;
       }
@@ -530,7 +548,7 @@ interface SetupItem {
         width: 100%;
         min-height: 0.35rem;
         border-radius: 6px 6px 2px 2px;
-        background: linear-gradient(180deg, #14b8a6 0%, #1e5b96 100%);
+        background: var(--lux-chart-bar);
       }
 
       .ts-home-bars small {
@@ -580,7 +598,7 @@ interface SetupItem {
         display: block;
         height: 100%;
         border-radius: inherit;
-        background: #1e5b96;
+        background: var(--lux-chart-track);
       }
 
       .ts-home-dot {
@@ -686,7 +704,7 @@ interface SetupItem {
       }
 
       .ts-home-doc:hover {
-        border-color: rgba(30, 91, 150, 0.28);
+        border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--lux-app-border));
         background: #f8fafc;
       }
 
@@ -1073,10 +1091,13 @@ export class DashboardPage implements OnInit {
     if (key === 'usoPlan') {
       const empresa = this.empresa();
       const limit = empresa?.planLimiteMes;
-      return limit ? `${empresa?.comprobantesMes ?? 0}/${limit} ${this.t('plan.documents')}` : this.t('plan.noMonthlyLimit');
+      if (!limit) {
+        return '';
+      }
+      return `${empresa?.comprobantesMes ?? 0} / ${limit}`;
     }
     if (key === 'tasaAutorizacion') {
-      return this.t('dashboard.kpi.authorizationHint', 'Documentos autorizados frente al total');
+      return '';
     }
     return this.periodLabel();
   }
