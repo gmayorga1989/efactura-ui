@@ -1,7 +1,8 @@
 @import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
+@import "styles/luxora-brand";
 
 :root {
-  --bg: #0f1419;
+  --bg: var(--lux-ink);
   --card: #1a222c;
   --text: #e8eef5;
   --muted: #94a3b8;
@@ -18,17 +19,17 @@
   --ef-input-radius: 8px;
   --ef-input-border: #cbd5e1bd;
   --ef-input-border-hover: #94a3b8;
-  --ef-primary: #3a57e8;
-  --ef-input-border-focus: var(--ef-primary);
-  --ef-primary-strong: #2f46c0;
-  --ef-primary-soft: #eef3ff;
+  --ef-primary: var(--lux-primary);
+  --ef-input-border-focus: var(--lux-primary);
+  --ef-primary-strong: var(--lux-primary-strong);
+  --ef-primary-soft: var(--lux-primary-soft);
   --ef-input-bg: #ffffff;
   --ef-input-placeholder: #64748b;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --bg: #f4f6f9;
+    --bg: var(--lux-surface);
     --card: #ffffff;
     --text: #1a222c;
     --muted: #475569;
@@ -86,7 +87,7 @@ small.text-muted,
 
 .form-control:focus,
 .form-select:focus {
-  border-color: var(--ef-input-border-focus, #3a57e8);
+  border-color: var(--ef-input-border-focus, var(--lux-indigo));
   background-color: var(--ef-input-bg, #fff);
   box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.14);
   color: var(--bs-body-color, #1e293b);
@@ -115,7 +116,7 @@ small.text-muted,
 .input-group:focus-within > .form-control,
 .input-group:focus-within > .form-select,
 .input-group:focus-within > .input-group-text {
-  border-color: var(--ef-input-border-focus, #3a57e8);
+  border-color: var(--ef-input-border-focus, var(--lux-indigo));
 }
 
 /* Barra de búsqueda del navbar (Hope anula sombra y deja borde tenue) */
@@ -125,13 +126,13 @@ small.text-muted,
 }
 
 .nav .search-input.input-group .form-control:focus {
-  border-color: var(--ef-input-border-focus, #3a57e8);
+  border-color: var(--ef-input-border-focus, var(--lux-indigo));
   box-shadow: none;
 }
 
 .nav .search-input.input-group:focus-within .input-group-text,
 .nav .search-input.input-group:focus-within .form-control {
-  border-color: var(--ef-input-border-focus, #3a57e8);
+  border-color: var(--ef-input-border-focus, var(--lux-indigo));
 }
 
 /* Celdas editables en Tabulator */
@@ -147,7 +148,7 @@ small.text-muted,
 .ts-tabulator-grid.tabulator .tabulator-cell input:focus,
 .ts-tabulator-grid.tabulator .tabulator-cell select:focus,
 .ts-tabulator-grid.tabulator .tabulator-cell textarea:focus {
-  border-color: var(--ef-input-border-focus, #3a57e8) !important;
+  border-color: var(--ef-input-border-focus, var(--lux-indigo)) !important;
   outline: 0;
   box-shadow: 0 0 0 0.15rem rgba(58, 87, 232, 0.2);
 }
@@ -183,7 +184,7 @@ small.text-muted,
 }
 
 .ts-choice-card--active {
-  border-color: var(--ef-input-border-focus, #3a57e8);
+  border-color: var(--ef-input-border-focus, var(--lux-indigo));
   background: #fff;
   box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.12);
 }
@@ -211,17 +212,17 @@ body {
 
 .btn.btn-primary {
   --bs-btn-color: #ffffff;
-  --bs-btn-bg: #3a57e8;
-  --bs-btn-border-color: #3a57e8;
+  --bs-btn-bg: var(--lux-primary);
+  --bs-btn-border-color: var(--lux-primary);
   --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #2f46c0;
-  --bs-btn-hover-border-color: #2f46c0;
+  --bs-btn-hover-bg: var(--lux-primary-strong);
+  --bs-btn-hover-border-color: var(--lux-primary-strong);
   --bs-btn-active-color: #ffffff;
-  --bs-btn-active-bg: #263aa0;
-  --bs-btn-active-border-color: #263aa0;
+  --bs-btn-active-bg: var(--lux-primary-deep);
+  --bs-btn-active-border-color: var(--lux-primary-deep);
   --bs-btn-disabled-color: #ffffff;
-  --bs-btn-disabled-bg: #3a57e8;
-  --bs-btn-disabled-border-color: #3a57e8;
+  --bs-btn-disabled-bg: var(--lux-primary);
+  --bs-btn-disabled-border-color: var(--lux-primary);
   color: #ffffff;
 }
 
@@ -229,52 +230,52 @@ body {
 .btn.btn-primary:focus,
 .btn.btn-primary:active,
 .btn.btn-primary.show {
-  border-color: #2f46c0 !important;
-  background-color: #2f46c0 !important;
+  border-color: var(--lux-primary-strong) !important;
+  background: var(--lux-gradient-diagonal) !important;
   color: #ffffff !important;
 }
 
 .btn.btn-soft-primary {
-  --bs-btn-color: #2f46c0;
-  --bs-btn-bg: rgba(58, 87, 232, 0.12);
+  --bs-btn-color: var(--lux-primary-strong);
+  --bs-btn-bg: color-mix(in srgb, var(--lux-indigo) 14%, transparent);
   --bs-btn-border-color: transparent;
   --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #3a57e8;
-  --bs-btn-hover-border-color: #3a57e8;
+  --bs-btn-hover-bg: var(--lux-primary);
+  --bs-btn-hover-border-color: var(--lux-primary);
   --bs-btn-active-color: #ffffff;
-  --bs-btn-active-bg: #2f46c0;
-  --bs-btn-active-border-color: #2f46c0;
+  --bs-btn-active-bg: var(--lux-primary-strong);
+  --bs-btn-active-border-color: var(--lux-primary-strong);
   border-color: transparent;
-  background-color: rgba(58, 87, 232, 0.12);
-  color: #2f46c0;
+  background-color: color-mix(in srgb, var(--lux-indigo) 14%, transparent);
+  color: var(--lux-primary-strong);
 }
 
 .btn.btn-soft-primary:hover,
 .btn.btn-soft-primary:focus,
 .btn.btn-soft-primary:active {
-  border-color: #3a57e8 !important;
-  background-color: #3a57e8 !important;
+  border-color: var(--lux-primary) !important;
+  background: var(--lux-gradient-diagonal) !important;
   color: #ffffff !important;
 }
 
 .btn.btn-soft-info {
-  --bs-btn-color: #087b88;
-  --bs-btn-bg: rgba(7, 201, 218, 0.14);
+  --bs-btn-color: #0891b2;
+  --bs-btn-bg: color-mix(in srgb, var(--lux-cyan) 22%, transparent);
   --bs-btn-border-color: transparent;
-  --bs-btn-hover-color: #ffffff;
-  --bs-btn-hover-bg: #079aa8;
-  --bs-btn-hover-border-color: #079aa8;
+  --bs-btn-hover-color: var(--lux-ink);
+  --bs-btn-hover-bg: var(--lux-cyan);
+  --bs-btn-hover-border-color: var(--lux-cyan);
   border-color: transparent;
-  background-color: rgba(7, 201, 218, 0.14);
-  color: #087b88;
+  background-color: color-mix(in srgb, var(--lux-cyan) 22%, transparent);
+  color: #0891b2;
 }
 
 .btn.btn-soft-info:hover,
 .btn.btn-soft-info:focus,
 .btn.btn-soft-info:active {
-  border-color: #079aa8 !important;
-  background-color: #079aa8 !important;
-  color: #ffffff !important;
+  border-color: var(--lux-cyan) !important;
+  background-color: var(--lux-cyan) !important;
+  color: var(--lux-ink) !important;
 }
 
 .btn.btn-soft-light {
@@ -357,7 +358,7 @@ body {
 }
 
 .ts-page-actions-toolbar .btn.btn-soft-primary {
-  color: #2f46c0 !important;
+  color: var(--lux-primary-strong) !important;
   background-color: rgba(58, 87, 232, 0.12) !important;
   border-color: transparent !important;
 }
@@ -366,8 +367,8 @@ body {
 .ts-page-actions-toolbar .btn.btn-soft-primary:focus,
 .ts-page-actions-toolbar .btn.btn-soft-primary:active {
   color: #ffffff !important;
-  background-color: #3a57e8 !important;
-  border-color: #3a57e8 !important;
+  background-color: var(--lux-indigo) !important;
+  border-color: var(--lux-indigo) !important;
 }
 
 .ts-tabulator-grid.tabulator {
@@ -467,7 +468,7 @@ body {
 .ts-tabulator-grid .ts-grid-actions__toggle.show {
   border-color: rgba(58, 87, 232, 0.3);
   background: #eef3ff;
-  color: #2f46c0;
+  color: var(--lux-primary-strong);
   box-shadow: 0 6px 16px rgba(58, 87, 232, 0.12);
 }
 
@@ -533,7 +534,7 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
 .ts-tabulator-grid .ts-grid-actions .dropdown-item:hover,
 .ts-tabulator-grid .ts-grid-actions .dropdown-item:focus {
   background: #eef3ff;
-  color: #2f46c0;
+  color: var(--lux-primary-strong);
 }
 
 .ts-tabulator-grid.tabulator .tabulator-tableholder .tabulator-placeholder {
@@ -566,7 +567,7 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
 .ts-tabulator-empty__title {
   margin: 0 0 0.45rem;
   padding-left: 0.65rem;
-  border-left: 3px solid var(--ef-primary, #3a57e8);
+  border-left: 3px solid var(--ef-primary, var(--lux-indigo));
   color: #0f172a;
   font-size: clamp(1rem, 2vw, 1.15rem);
   font-weight: 700;
@@ -590,11 +591,11 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
   border-radius: 14px;
   background: linear-gradient(
     145deg,
-    color-mix(in srgb, var(--ef-primary, #3a57e8) 11%, #ffffff),
-    color-mix(in srgb, var(--ef-primary, #3a57e8) 4%, #f8fafc)
+    color-mix(in srgb, var(--ef-primary, var(--lux-indigo)) 11%, #ffffff),
+    color-mix(in srgb, var(--ef-primary, var(--lux-indigo)) 4%, #f8fafc)
   );
-  border: 1px solid color-mix(in srgb, var(--ef-primary, #3a57e8) 20%, #e2e8f0);
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--ef-primary, #3a57e8) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--ef-primary, var(--lux-indigo)) 20%, #e2e8f0);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ef-primary, var(--lux-indigo)) 12%, transparent);
 }
 
 .ts-tabulator-empty__illustration {
@@ -603,8 +604,8 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
   aspect-ratio: 6 / 5;
   background: linear-gradient(
     155deg,
-    var(--ef-primary, #3a57e8) 0%,
-    var(--ef-primary-strong, #2f46c0) 100%
+    var(--ef-primary, var(--lux-indigo)) 0%,
+    var(--ef-primary-strong, var(--lux-primary-strong)) 100%
   );
   opacity: 0.9;
   -webkit-mask-image: var(--ts-empty-mask);
@@ -671,11 +672,11 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
 
 .ts-tab:hover {
   background: #eef3ff;
-  color: #2f46c0;
+  color: var(--lux-primary-strong);
 }
 
 .ts-tab.active {
-  background: #3a57e8;
+  background: var(--lux-indigo);
   color: #ffffff;
   box-shadow: 0 8px 18px rgba(58, 87, 232, 0.2);
 }
@@ -762,14 +763,14 @@ body > .ts-grid-actions__menu .dropdown-item:focus,
 }
 
 .ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page:not(:disabled):hover {
-  border-color: #3a57e8;
+  border-color: var(--lux-indigo);
   background: rgba(58, 87, 232, 0.08);
-  color: #2f46c0;
+  color: var(--lux-primary-strong);
 }
 
 .ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page.active {
-  border-color: #3a57e8;
-  background: #3a57e8;
+  border-color: var(--lux-indigo);
+  background: var(--lux-indigo);
   color: #ffffff;
 }
 
@@ -987,7 +988,7 @@ ts-root {
   flex: 0 0 42px;
   width: 42px;
   height: 42px;
-  color: #3a57e8;
+  color: var(--lux-indigo);
   background: linear-gradient(180deg, #f6f8ff 0%, #eef3ff 100%);
   border: 1px solid #dfe7ff;
   border-radius: 12px;
@@ -1145,7 +1146,7 @@ ts-root {
   gap: 0.35rem 0.65rem;
 }
 
-/* Scroll nativo gris: anula el thumb azul (#3a57e8) de Hope UI y evita smooth-scrollbar (data-scrollbar). */
+/* Scroll nativo gris: anula el thumb azul (var(--lux-indigo)) de Hope UI y evita smooth-scrollbar (data-scrollbar). */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
