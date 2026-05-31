@@ -47,13 +47,7 @@ import { TenantContextService } from '../../core/tenant/tenant-context.service';
               </div>
             </div>
           </div>
-          <div class="iq-header-img">
-            <img
-              src="assets/vendor/hope-ui/images/dashboard/top-header.png"
-              alt=""
-              class="theme-color-default-img img-fluid w-100 h-100 animated-scaleX"
-            />
-          </div>
+          <div class="iq-header-img lux-tenant-hero-bg" aria-hidden="true"></div>
         </div>
         }
       </div>
@@ -85,8 +79,17 @@ import { TenantContextService } from '../../core/tenant/tenant-context.service';
 
       .tenant-hero {
         position: relative;
-        height: 170px;
-        min-height: 170px;
+        height: 148px;
+        min-height: 148px;
+      }
+
+      .lux-tenant-hero-bg {
+        background: linear-gradient(
+          118deg,
+          color-mix(in srgb, var(--lux-indigo) 88%, #0f172a) 0%,
+          color-mix(in srgb, var(--lux-cyan) 42%, var(--lux-indigo)) 48%,
+          color-mix(in srgb, var(--lux-magenta) 55%, var(--lux-indigo)) 100%
+        );
       }
 
       .tenant-hero .iq-container {
@@ -111,7 +114,7 @@ import { TenantContextService } from '../../core/tenant/tenant-context.service';
       }
 
       .tenant-hero .iq-header-img {
-        height: 170px;
+        height: 148px;
       }
 
       .tenant-content--compact {

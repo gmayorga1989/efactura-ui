@@ -28,6 +28,16 @@
   color: var(--lux-app-ink);
 }
 
+.lux-app--inset {
+  min-height: auto;
+  padding-top: 1.25rem;
+  padding-bottom: 2rem;
+}
+
+.lux-app-header--compact {
+  margin-bottom: 1rem;
+}
+
 .lux-app-header {
   display: flex;
   justify-content: space-between;

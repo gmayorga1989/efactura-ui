@@ -1282,3 +1282,41 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #94a3b8 #f1f5f9;
 }
+
+/* Barra superior — acentos Luxora (alineado con Suite) */
+.ts-empresa-chip__icon {
+  color: var(--lux-primary-strong);
+  border-color: color-mix(in srgb, var(--lux-indigo) 18%, #dbeafe);
+}
+
+.ts-empresa-chip:hover,
+.ts-empresa-chip:focus-visible {
+  border-color: color-mix(in srgb, var(--lux-indigo) 32%, #e2e8f0);
+  background: var(--lux-primary-soft);
+  color: var(--lux-primary-strong);
+}
+
+.ts-navbar-icon-btn {
+  color: var(--lux-primary-strong);
+}
+
+.ts-navbar-icon-btn:hover,
+.ts-navbar-icon-btn:focus-visible {
+  border-color: color-mix(in srgb, var(--lux-indigo) 22%, #e2e8f0);
+  background: var(--lux-primary-soft);
+}
+
+.user-initials-avatar,
+.user-account-card__avatar {
+  color: var(--lux-primary-strong);
+  background: linear-gradient(180deg, var(--lux-primary-soft) 0%, #fff 100%);
+  border-color: color-mix(in srgb, var(--lux-indigo) 22%, #bfdbfe);
+}
+
+.user-account-action:hover,
+.user-account-action:focus-visible,
+.ts-navbar-panel__item:hover:not(:disabled),
+.ts-navbar-panel__item:focus-visible:not(:disabled) {
+  color: var(--lux-primary-strong);
+  background: var(--lux-primary-soft);
+}
