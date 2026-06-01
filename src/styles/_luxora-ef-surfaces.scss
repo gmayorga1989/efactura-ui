@@ -1,0 +1,281 @@
+/**
+ * Superficies eFactura — tabs, modales, filtros y paneles (modo nocturno / claro).
+ * Usar variables para que componentes con estilos locales hereden el mismo aspecto.
+ */
+
+html[data-lux-theme='dark'] {
+  --ef-tabs-bg: color-mix(in srgb, var(--bg) 28%, var(--card));
+  --ef-tabs-border: var(--ef-surface-border);
+  --ef-tabs-ink: var(--muted);
+  --ef-tabs-hover-bg: var(--ef-primary-soft);
+  --ef-tabs-active-bg: var(--lux-indigo);
+  --ef-tabs-active-ink: #fff;
+  --ef-modal-footer-bg: color-mix(in srgb, var(--bg) 20%, var(--card));
+}
+
+html[data-lux-theme='light'] {
+  --ef-tabs-bg: #f7f9fd;
+  --ef-tabs-border: #e4e9f2;
+  --ef-tabs-ink: #536179;
+  --ef-tabs-hover-bg: #eef3ff;
+  --ef-tabs-active-bg: var(--lux-indigo);
+  --ef-tabs-active-ink: #fff;
+  --ef-modal-footer-bg: linear-gradient(180deg, #fafbfc 0%, #f1f5f9 100%);
+}
+
+:root,
+html:not([data-lux-theme='light']) {
+  --ef-tabs-bg: color-mix(in srgb, var(--bg) 28%, var(--card));
+  --ef-tabs-border: var(--ef-surface-border);
+  --ef-tabs-ink: var(--muted);
+  --ef-tabs-hover-bg: var(--ef-primary-soft);
+  --ef-tabs-active-bg: var(--lux-indigo);
+  --ef-tabs-active-ink: #fff;
+  --ef-modal-footer-bg: color-mix(in srgb, var(--bg) 20%, var(--card));
+}
+
+/* Tabs segmentados (vendedores, sucursales, etc.) */
+.ts-tabs {
+  border: 1px solid var(--ef-tabs-border, #e4e9f2);
+  background: var(--ef-tabs-bg, #f7f9fd);
+}
+
+.ts-tab {
+  color: var(--ef-tabs-ink, #536179);
+}
+
+.ts-tab:hover {
+  background: var(--ef-tabs-hover-bg, #eef3ff);
+  color: var(--lux-primary-strong);
+}
+
+.ts-tab.active {
+  background: var(--ef-tabs-active-bg, var(--lux-indigo));
+  color: var(--ef-tabs-active-ink, #fff);
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--lux-indigo) 28%, transparent);
+}
+
+.ts-form-modal__footer {
+  border-top: 1px solid var(--ef-divider);
+  background: var(--ef-modal-footer-bg) !important;
+}
+
+/* Filtros maestros */
+.maestro-filters {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  box-shadow: var(--ef-surface-shadow);
+}
+
+.maestro-filter span {
+  color: var(--ef-muted-soft, #64748b);
+}
+
+/* Reportes */
+.ts-reports-tabs,
+.ts-reports-filters,
+.ts-reports-panel,
+.ts-reports-card,
+.ts-reports-empty {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  box-shadow: var(--ef-surface-shadow) !important;
+  color: var(--text);
+}
+
+.ts-reports-tabs {
+  background: var(--ef-tabs-bg) !important;
+}
+
+.ts-reports-tabs__btn {
+  color: var(--muted);
+}
+
+.ts-reports-tabs__btn:hover {
+  background: var(--ef-tabs-hover-bg);
+  color: var(--text);
+}
+
+.ts-reports-tabs__btn--active {
+  background: color-mix(in srgb, var(--lux-indigo) 18%, var(--card)) !important;
+  color: var(--lux-primary-strong) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 22%, transparent);
+}
+
+.ts-reports-filters span {
+  color: var(--ef-muted-soft);
+}
+
+.ts-reports-filters input,
+.ts-reports-filters select {
+  background: var(--ef-input-bg) !important;
+  border-color: var(--ef-input-border) !important;
+  color: var(--text) !important;
+}
+
+/* Empresa / paneles administración */
+.ts-company-summary,
+.ts-panel {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--text);
+}
+
+.ts-panel-header p,
+.ts-panel-footer,
+.ts-empty-state {
+  color: var(--muted) !important;
+}
+
+.ts-panel-header h5 {
+  color: var(--text);
+}
+
+.ts-field span {
+  color: var(--ef-label) !important;
+}
+
+.ts-logo-frame,
+.ts-upload-preview {
+  background: var(--ef-surface-raised, #f8fafc) !important;
+  color: var(--text);
+}
+
+/* Modales con estilos locales duplicados */
+html[data-lux-theme='dark'] .ts-form-modal,
+html[data-lux-theme='dark'] .ts-confirm-modal,
+html[data-lux-theme='dark'] .avatar-crop-modal {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-form-modal__header,
+html[data-lux-theme='dark'] .ts-form-modal__footer {
+  background: var(--ef-page-header-bg) !important;
+  border-color: var(--ef-divider) !important;
+}
+
+html[data-lux-theme='dark'] .ts-form-modal__header h3,
+html[data-lux-theme='dark'] .ts-confirm-modal h3 {
+  color: var(--text) !important;
+}
+
+html[data-lux-theme='dark'] .ts-form-modal__close {
+  background: var(--ef-surface-raised) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--muted) !important;
+}
+
+/* Bootstrap nav-tabs / pills (SRI, RIDE, etc.) */
+html[data-lux-theme='dark'] .nav-tabs {
+  border-bottom-color: var(--ef-divider);
+}
+
+html[data-lux-theme='dark'] .nav-tabs .nav-link {
+  color: var(--muted);
+  border-color: transparent;
+  background: transparent;
+}
+
+html[data-lux-theme='dark'] .nav-tabs .nav-link:hover {
+  color: var(--text);
+  border-color: var(--ef-surface-border);
+  background: var(--ef-primary-soft);
+}
+
+html[data-lux-theme='dark'] .nav-tabs .nav-link.active {
+  color: var(--text);
+  background: color-mix(in srgb, var(--lux-indigo) 14%, var(--card));
+  border-color: var(--ef-surface-border) var(--ef-surface-border) var(--card);
+}
+
+html[data-lux-theme='dark'] .nav-pills .nav-link {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .nav-pills .nav-link.active {
+  background: var(--lux-indigo);
+  color: #fff;
+}
+
+/* Formularios maestros / productos */
+.form-section,
+.maestro-form .form-section {
+  background: var(--card) !important;
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .sri-tabs__btn {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .sri-tabs__btn:hover {
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .sri-tabs__btn--active {
+  color: var(--lux-primary-strong);
+  border-bottom-color: var(--lux-indigo);
+}
+
+html[data-lux-theme='dark'] .comprobante-detail-card,
+html[data-lux-theme='dark'] .comprobante-detail-grid-wrap {
+  background: var(--card) !important;
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-reports-table th {
+  background: color-mix(in srgb, var(--bg) 20%, var(--card)) !important;
+  color: var(--muted) !important;
+}
+
+html[data-lux-theme='dark'] .ts-reports-table td,
+html[data-lux-theme='dark'] .ts-reports-table__actions {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-top-color: var(--ef-divider) !important;
+}
+
+html[data-lux-theme='dark'] .ts-reports-table tfoot td {
+  background: color-mix(in srgb, var(--bg) 18%, var(--card)) !important;
+  color: var(--text) !important;
+}
+
+/* Botón tema Luxora (Suite + eFactura) */
+.lux-theme-btn {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2.45rem;
+  height: 2.45rem;
+  padding: 0;
+  border: 1px solid var(--ef-surface-border, var(--lux-app-border));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--card, var(--lux-card-bg)) 88%, transparent);
+  color: var(--text, var(--lux-app-ink));
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  transition:
+    border-color 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease,
+    color 0.18s ease;
+}
+
+.lux-theme-btn:hover,
+.lux-theme-btn:focus-visible {
+  border-color: color-mix(in srgb, var(--lux-indigo) 32%, var(--ef-surface-border, var(--lux-app-border)));
+  background: var(--ef-primary-soft, var(--lux-primary-soft));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lux-indigo) 16%, transparent);
+}
+
+html[data-lux-theme='dark'] .lux-theme-btn {
+  color: #fbbf24;
+}
+
+html[data-lux-theme='dark'] .lux-theme-btn:hover,
+html[data-lux-theme='dark'] .lux-theme-btn:focus-visible {
+  color: #fde68a;
+}
