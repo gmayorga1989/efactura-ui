@@ -108,7 +108,7 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
-            <li class="nav-item d-none d-md-flex">
+            <li class="nav-item d-none d-md-flex ts-navbar-theme-item">
               <button
                 type="button"
                 class="ts-navbar-icon-btn ts-theme-toggle"
@@ -288,9 +288,9 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
         flex: 0 0 32px;
         width: 32px;
         height: 32px;
-        color: #1d4ed8;
-        background: #fff;
-        border: 1px solid #dbeafe;
+        color: var(--lux-primary-strong, #1d4ed8);
+        background: var(--ef-surface-raised, #fff);
+        border: 1px solid color-mix(in srgb, var(--lux-indigo) 18%, var(--ef-surface-border, #dbeafe));
         border-radius: 10px;
       }
 
@@ -322,6 +322,15 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
       .ts-empresa-chip__chevron {
         flex: 0 0 auto;
         color: #64748b;
+      }
+
+      .ts-navbar-theme-item {
+        margin-right: 0.55rem;
+      }
+
+      .ts-theme-toggle {
+        font-size: 1.05rem;
+        line-height: 1;
       }
 
       .ts-navbar-search .search-input {
@@ -364,8 +373,8 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
         display: grid;
         gap: 0.12rem;
         padding: 0.85rem 0.95rem;
-        background: #f8fafc;
-        border-bottom: 1px solid #e2e8f0;
+        background: var(--ef-surface-raised, #f8fafc);
+        border-bottom: 1px solid var(--ef-divider, #e2e8f0);
       }
 
       .ts-navbar-panel__header span {
@@ -542,7 +551,7 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
       }
       .user-account-card {
         padding: 0.85rem;
-        background: #fff;
+        background: var(--card, #fff);
       }
       .user-account-card__header {
         display: flex;
@@ -582,8 +591,8 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
         gap: 0.15rem;
         margin: 0.75rem 0;
         padding: 0.62rem 0.72rem;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background: var(--ef-surface-raised, #f8fafc);
+        border: 1px solid var(--ef-surface-border, #e2e8f0);
         border-radius: 12px;
       }
       .user-account-card__presence {
@@ -592,9 +601,9 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
         gap: 0.55rem;
         margin: 0 0 0.75rem;
         padding: 0.58rem 0.72rem;
-        color: #475569;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        color: var(--muted);
+        background: var(--ef-surface-raised, #f8fafc);
+        border: 1px solid var(--ef-surface-border, #e2e8f0);
         border-radius: 12px;
       }
       .user-account-card__presence--online {

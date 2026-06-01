@@ -372,10 +372,11 @@ type ProfileSection = 'personal' | 'location' | 'preferences' | 'security';
       }
       .profile-side,
       .profile-card {
-        background: #fff;
-        border: 1px solid #e2e8f0;
+        background: var(--card);
+        border: 1px solid var(--ef-surface-border, #e2e8f0);
         border-radius: 16px;
-        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.035);
+        box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
       .profile-side {
         align-self: start;

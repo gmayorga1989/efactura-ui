@@ -29,7 +29,16 @@ html[data-lux-theme='dark'] {
   --ef-primary-strong: var(--lux-primary-strong);
   --ef-primary-soft: color-mix(in srgb, var(--lux-indigo) 18%, var(--lux-night-panel));
   --ef-input-bg: var(--lux-night-panel, #0b1324);
+  --ef-input-bg-hover: color-mix(in srgb, var(--lux-indigo) 7%, var(--ef-input-bg));
   --ef-input-placeholder: #64748b;
+  --ef-page-header-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--card) 92%, #101a2e) 0%,
+    color-mix(in srgb, var(--bg) 18%, var(--card)) 100%
+  );
+  --ef-page-icon-bg: color-mix(in srgb, var(--lux-indigo) 14%, var(--card));
+  --ef-page-icon-border: color-mix(in srgb, var(--lux-indigo) 20%, var(--ef-surface-border));
+  --ef-surface-raised: color-mix(in srgb, var(--card) 88%, #131d33);
 }
 
 html[data-lux-theme='light'] {
@@ -53,6 +62,11 @@ html[data-lux-theme='light'] {
   --ef-input-border-hover: #94a3b8;
   --ef-primary-soft: var(--lux-primary-soft);
   --ef-input-bg: #ffffff;
+  --ef-input-bg-hover: #ffffff;
+  --ef-page-header-bg: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+  --ef-page-icon-bg: linear-gradient(180deg, #f6f8ff 0%, #eef3ff 100%);
+  --ef-page-icon-border: #dfe7ff;
+  --ef-surface-raised: #f8fafc;
 }
 
 body {
@@ -98,15 +112,16 @@ small.text-muted,
 .form-control:hover:not(:disabled):not([readonly]):not(:focus),
 .form-select:hover:not(:disabled):not(:focus) {
   border-color: var(--ef-input-border-hover, #94a3b8);
-  background-color: #fff;
+  background-color: var(--ef-input-bg-hover, var(--ef-input-bg, #fff));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 8%, transparent);
 }
 
 .form-control:focus,
 .form-select:focus {
   border-color: var(--ef-input-border-focus, var(--lux-indigo));
   background-color: var(--ef-input-bg, #fff);
-  box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.14);
-  color: var(--bs-body-color, #1e293b);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lux-indigo) 22%, transparent);
+  color: var(--bs-body-color, var(--text));
 }
 
 .form-control:disabled,
@@ -180,7 +195,7 @@ small.text-muted,
 .card-header,
 .card-footer {
   border-color: var(--ef-divider, #e2e8f0);
-  background-color: #fafbfc;
+  background-color: var(--ef-surface-raised, #fafbfc);
 }
 
 /* Opciones tipo tarjeta (presets de diseño correo/RIDE, etc.) */
@@ -953,10 +968,11 @@ ts-root {
   flex-direction: column;
   width: min(520px, calc(100vw - 2rem));
   max-height: calc(100vh - 2rem);
-  background: #fff;
-  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--ef-surface-border);
   border-radius: 16px;
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+  box-shadow: var(--ef-surface-shadow);
   overflow: hidden;
 }
 
@@ -1056,8 +1072,8 @@ ts-root {
   align-items: center;
   gap: 0.8rem;
   padding: 1rem 1.1rem;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.95);
-  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border-bottom: 1px solid var(--ef-divider);
+  background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #f8fafc 100%));
 }
 
 .ts-form-modal__header--compact {
@@ -1070,21 +1086,21 @@ ts-root {
 }
 
 .ts-form-modal__eyebrow {
-  color: #64748b;
+  color: var(--ef-muted-soft, #64748b);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .ts-form-modal__header h3 {
-  color: #0f172a;
+  color: var(--text);
   font-size: 1rem;
   font-weight: 700;
 }
 
 .ts-form-modal__subtitle {
   margin-top: 0.2rem;
-  color: #64748b;
+  color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.35;
 }
@@ -1097,16 +1113,21 @@ ts-root {
   width: 36px;
   height: 36px;
   padding: 0;
-  border: 1px solid rgba(203, 213, 225, 0.95);
+  border: 1px solid var(--ef-surface-border);
   border-radius: 10px;
-  color: #64748b;
-  background: #fff;
+  color: var(--muted);
+  background: var(--ef-surface-raised, #fff);
   cursor: pointer;
+  transition:
+    background-color 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease;
 }
 
 .ts-form-modal__close:hover {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: var(--ef-primary-soft);
+  border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--ef-surface-border));
+  color: var(--text);
 }
 
 .ts-form-modal__body {
@@ -1371,4 +1392,296 @@ html[data-lux-theme='dark'] .user-account-card {
 html[data-lux-theme='dark'] .ts-navbar-panel__header strong,
 html[data-lux-theme='dark'] .user-account-card__identity h6 {
   color: var(--text) !important;
+}
+
+/* —— Modo nocturno: superficies, grillas, botones secundarios —— */
+html[data-lux-theme='dark'] .form-control:disabled,
+html[data-lux-theme='dark'] .form-control[readonly],
+html[data-lux-theme='dark'] .form-select:disabled {
+  background-color: color-mix(in srgb, var(--bg) 35%, var(--card));
+  border-color: var(--ef-surface-border);
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .input-group-text {
+  background-color: var(--ef-input-bg);
+  border-color: var(--ef-input-border);
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .nav .search-input.input-group .form-control,
+html[data-lux-theme='dark'] .nav .search-input.input-group .input-group-text {
+  background-color: var(--ef-input-bg) !important;
+  border-color: var(--ef-input-border) !important;
+  color: var(--text) !important;
+}
+
+html[data-lux-theme='dark'] .nav .search-input.input-group .form-control::placeholder {
+  color: var(--ef-input-placeholder) !important;
+}
+
+html[data-lux-theme='dark'] .nav .search-input.input-group:hover .form-control,
+html[data-lux-theme='dark'] .nav .search-input.input-group:hover .input-group-text {
+  border-color: var(--ef-input-border-hover) !important;
+  background-color: var(--ef-input-bg-hover) !important;
+}
+
+html[data-lux-theme='dark'] .ts-theme-toggle {
+  border-color: var(--ef-surface-border);
+  background: color-mix(in srgb, var(--card) 82%, var(--bg));
+  color: #fbbf24;
+}
+
+html[data-lux-theme='dark'] .ts-theme-toggle:hover,
+html[data-lux-theme='dark'] .ts-theme-toggle:focus-visible {
+  border-color: color-mix(in srgb, var(--lux-indigo) 32%, var(--ef-surface-border));
+  background: var(--ef-primary-soft);
+  color: #fde68a;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lux-indigo) 18%, transparent);
+}
+
+html[data-lux-theme='dark'] .btn.btn-light {
+  --bs-btn-color: var(--text);
+  --bs-btn-bg: color-mix(in srgb, var(--card) 90%, #131d33);
+  --bs-btn-border-color: var(--ef-surface-border);
+  --bs-btn-hover-color: var(--text);
+  --bs-btn-hover-bg: var(--ef-primary-soft);
+  --bs-btn-hover-border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--ef-surface-border));
+  color: var(--text);
+  background-color: color-mix(in srgb, var(--card) 90%, #131d33);
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .btn.btn-light:hover,
+html[data-lux-theme='dark'] .btn.btn-light:focus,
+html[data-lux-theme='dark'] .btn.btn-light:active {
+  color: var(--text) !important;
+  background-color: var(--ef-primary-soft) !important;
+  border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--ef-surface-border)) !important;
+}
+
+html[data-lux-theme='dark'] .ts-page-actions-toolbar .btn.btn-outline-secondary {
+  color: var(--muted) !important;
+  background-color: color-mix(in srgb, var(--card) 88%, #131d33) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+html[data-lux-theme='dark'] .ts-page-actions-toolbar .btn.btn-outline-secondary:hover,
+html[data-lux-theme='dark'] .ts-page-actions-toolbar .btn.btn-outline-secondary:focus,
+html[data-lux-theme='dark'] .ts-page-actions-toolbar .btn.btn-outline-secondary:active {
+  color: var(--text) !important;
+  background-color: var(--ef-primary-soft) !important;
+  border-color: color-mix(in srgb, var(--lux-indigo) 30%, var(--ef-surface-border)) !important;
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator {
+  background: var(--card);
+  color: var(--text);
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-header,
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-header .tabulator-col {
+  background: color-mix(in srgb, var(--bg) 22%, var(--card));
+  border-color: var(--ef-divider);
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-row {
+  background: var(--card);
+  border-bottom-color: var(--ef-divider);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-row.tabulator-row-even {
+  background: color-mix(in srgb, var(--bg) 12%, var(--card));
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-row:hover {
+  background: var(--ef-primary-soft);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-row .tabulator-cell {
+  border-right-color: var(--ef-divider);
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-footer {
+  background: color-mix(in srgb, var(--bg) 18%, var(--card));
+  border-top-color: var(--ef-divider);
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page-size,
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page {
+  background: var(--ef-input-bg);
+  border-color: var(--ef-surface-border);
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-footer .tabulator-page:disabled {
+  background: color-mix(in srgb, var(--bg) 30%, var(--card));
+  color: var(--ef-muted-soft);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid .ts-grid-actions__toggle {
+  background: color-mix(in srgb, var(--card) 85%, #131d33);
+  border-color: var(--ef-surface-border);
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-empty__title {
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-empty__description {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-empty__visual {
+  background: color-mix(in srgb, var(--lux-indigo) 10%, var(--card));
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .ts-form-modal__icon {
+  background: var(--ef-page-icon-bg);
+  border-color: var(--ef-page-icon-border);
+}
+
+html[data-lux-theme='dark'] .ts-detail-kv__row {
+  background: color-mix(in srgb, var(--bg) 15%, var(--card));
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .ts-detail-kv__row span {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .ts-detail-kv__row strong {
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .user-account-card__context,
+html[data-lux-theme='dark'] .user-account-card__presence {
+  background: color-mix(in srgb, var(--bg) 20%, var(--card)) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+html[data-lux-theme='dark'] .user-account-card__context span,
+html[data-lux-theme='dark'] .user-account-card__identity p {
+  color: var(--muted) !important;
+}
+
+html[data-lux-theme='dark'] .user-account-card__context strong,
+html[data-lux-theme='dark'] .user-account-card__presence strong {
+  color: var(--text) !important;
+}
+
+html[data-lux-theme='dark'] .profile-side,
+html[data-lux-theme='dark'] .profile-card {
+  background: var(--card);
+  border-color: var(--ef-surface-border);
+  box-shadow: var(--ef-surface-shadow);
+}
+
+html[data-lux-theme='dark'] .profile-meta span,
+html[data-lux-theme='dark'] .avatar-help {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .profile-meta h2,
+html[data-lux-theme='dark'] .profile-card h3 {
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .profile-meta p {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .profile-nav button {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .profile-nav button:hover,
+html[data-lux-theme='dark'] .profile-nav button.active {
+  color: var(--text);
+  background: var(--ef-primary-soft);
+}
+
+html[data-lux-theme='dark'] .profile-avatar {
+  background: color-mix(in srgb, var(--lux-indigo) 16%, var(--card));
+  border-color: color-mix(in srgb, var(--lux-indigo) 24%, var(--ef-surface-border));
+  color: var(--lux-primary-strong);
+}
+
+html[data-lux-theme='dark'] .presence-chip,
+html[data-lux-theme='dark'] .security-chip {
+  background: color-mix(in srgb, var(--bg) 18%, var(--card));
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .avatar-crop-modal {
+  background: var(--card);
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .avatar-crop-modal__header,
+html[data-lux-theme='dark'] .avatar-crop-modal__footer {
+  background: var(--ef-page-header-bg);
+  border-color: var(--ef-divider);
+}
+
+html[data-lux-theme='dark'] .avatar-crop-modal__header h3 {
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-home-company__meta {
+  color: var(--muted);
+}
+
+html[data-lux-theme='dark'] .card-header,
+html[data-lux-theme='dark'] .card-footer {
+  background-color: color-mix(in srgb, var(--bg) 18%, var(--card));
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-choice-card {
+  background: var(--ef-input-bg);
+  border-color: var(--ef-surface-border);
+}
+
+html[data-lux-theme='dark'] .ts-choice-card:hover {
+  background: var(--ef-input-bg-hover);
+  border-color: var(--ef-input-border-hover);
+}
+
+html[data-lux-theme='dark'] .ts-choice-card--active {
+  background: color-mix(in srgb, var(--lux-indigo) 12%, var(--card));
+  border-color: var(--ef-input-border-focus);
+}
+
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-cell input,
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-cell select,
+html[data-lux-theme='dark'] .ts-tabulator-grid.tabulator .tabulator-cell textarea {
+  background: var(--ef-input-bg) !important;
+  color: var(--text) !important;
+  border-color: var(--ef-input-border) !important;
+}
+
+html[data-lux-theme='dark'] .form-control[readonly],
+html[data-lux-theme='dark'] input.form-control:read-only {
+  background-color: color-mix(in srgb, var(--bg) 28%, var(--card)) !important;
+  color: var(--text) !important;
+}
+
+html[data-lux-theme='dark'] .ts-page-card .border.rounded {
+  background: color-mix(in srgb, var(--bg) 10%, var(--card));
+  border-color: var(--ef-surface-border) !important;
+}
+
+html[data-lux-theme='dark'] input:-webkit-autofill,
+html[data-lux-theme='dark'] input:-webkit-autofill:hover,
+html[data-lux-theme='dark'] input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px var(--ef-input-bg) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+  caret-color: var(--text);
 }

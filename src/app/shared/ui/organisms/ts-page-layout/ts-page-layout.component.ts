@@ -79,7 +79,8 @@ import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
         box-shadow: var(--ef-surface-shadow);
-        background: #fff;
+        background: var(--card);
+        color: var(--text);
       }
 
       .ts-page-header {
@@ -91,7 +92,7 @@ import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
         padding: 0.58rem 1rem;
         border-bottom: 1px solid var(--ef-divider, #e2e8f0);
         border-radius: var(--ef-surface-radius, 10px) var(--ef-surface-radius, 10px) 0 0;
-        background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #fbfcff 100%));
       }
 
       .ts-page-title {
@@ -111,17 +112,17 @@ import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
         width: 2.3rem;
         height: 2.3rem;
         flex: 0 0 2.3rem;
-        border: 1px solid #dfe7ff;
+        border: 1px solid var(--ef-page-icon-border, #dfe7ff);
         border-radius: 8px;
-        background: linear-gradient(180deg, #f6f8ff 0%, #eef3ff 100%);
-        color: #3a57e8;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+        background: var(--ef-page-icon-bg, linear-gradient(180deg, #f6f8ff 0%, #eef3ff 100%));
+        color: var(--lux-primary-strong, #3a57e8);
+        box-shadow: inset 0 1px 0 color-mix(in srgb, var(--text) 6%, transparent);
       }
 
       .ts-page-eyebrow {
         display: block;
         margin-bottom: 0.16rem;
-        color: #64748b;
+        color: var(--ef-muted-soft, #64748b);
         font-size: 0.62rem;
         font-weight: 700;
         line-height: 1;
@@ -131,7 +132,7 @@ import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
 
       .ts-page-title h1 {
         margin: 0;
-        color: #1f2937;
+        color: var(--text);
         font-size: clamp(0.98rem, 1.1vw, 1.12rem);
         font-weight: 650;
         line-height: 1.18;
@@ -139,7 +140,7 @@ import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
 
       .ts-page-title p {
         margin: 0.16rem 0 0;
-        color: #475569;
+        color: var(--muted);
         font-size: 0.78rem;
         line-height: 1.25;
       }

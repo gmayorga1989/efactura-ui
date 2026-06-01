@@ -337,8 +337,8 @@ type VendedoresTab = 'kpi' | 'team';
         align-items: center;
         gap: 0.8rem;
         padding: 1rem 1.1rem;
-        border-bottom: 1px solid rgba(226, 232, 240, 0.95);
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        border-bottom: 1px solid var(--ef-divider);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #f8fafc 100%));
       }
       .ts-form-modal__icon {
         display: grid;
@@ -346,19 +346,19 @@ type VendedoresTab = 'kpi' | 'team';
         flex: 0 0 42px;
         width: 42px;
         height: 42px;
-        color: #2563eb;
-        background: #eff6ff;
-        border: 1px solid #bfdbfe;
+        color: var(--lux-primary-strong, #2563eb);
+        background: var(--ef-page-icon-bg, #eff6ff);
+        border: 1px solid var(--ef-page-icon-border, #bfdbfe);
         border-radius: 12px;
       }
       .ts-form-modal__eyebrow {
-        color: #64748b;
+        color: var(--ef-muted-soft, #64748b);
         font-size: 0.72rem;
         font-weight: 700;
         text-transform: uppercase;
       }
       .ts-form-modal__header h3 {
-        color: #0f172a;
+        color: var(--text);
         font-size: 1rem;
         font-weight: 700;
       }
@@ -368,10 +368,10 @@ type VendedoresTab = 'kpi' | 'team';
         margin-left: auto;
         width: 32px;
         height: 32px;
-        border: 1px solid rgba(203, 213, 225, 0.9);
+        border: 1px solid var(--ef-surface-border);
         border-radius: 10px;
-        color: #475569;
-        background: #fff;
+        color: var(--muted);
+        background: var(--ef-surface-raised, #fff);
         font-size: 1.2rem;
         line-height: 1;
       }
@@ -379,7 +379,7 @@ type VendedoresTab = 'kpi' | 'team';
         display: grid;
         gap: 0.35rem;
         margin: 0;
-        color: #334155;
+        color: var(--ef-label);
         font-size: 0.82rem;
         font-weight: 650;
       }
