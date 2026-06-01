@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LuxThemeService } from './core/theme/lux-theme.service';
 import { TsToastStackComponent } from './shared/ui/organisms/ts-toast-stack/ts-toast-stack.component';
 
 @Component({
@@ -8,4 +9,8 @@ import { TsToastStackComponent } from './shared/ui/organisms/ts-toast-stack/ts-t
   imports: [RouterOutlet, TsToastStackComponent],
   template: `<router-outlet /><ts-toast-stack />`,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    inject(LuxThemeService);
+  }
+}

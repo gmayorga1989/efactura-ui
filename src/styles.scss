@@ -1,47 +1,63 @@
 @import "tabulator-tables/dist/css/tabulator_bootstrap5.min.css";
 @import "styles/luxora-brand";
 
-:root {
-  --bg: var(--lux-ink);
-  --card: #1a222c;
-  --text: #e8eef5;
+/* Tokens eFactura — sincronizados con data-lux-theme (default: nocturno) */
+:root,
+html[data-lux-theme='dark'] {
+  --bg: var(--lux-night-bg, #070b14);
+  --card: var(--lux-night-panel, #0b1324);
+  --text: #e8ecf4;
   --muted: #94a3b8;
-  --border: #2a3544;
+  --border: rgba(148, 163, 184, 0.16);
   --ef-label: #cbd5e1;
   --ef-muted: #94a3b8;
   --ef-muted-soft: #64748b;
-  /* Hope UI (#eee): la UI es clara; bordes visibles en todos los perfiles del SO */
-  --bs-border-color: #cbd5e1bd;
-  --ef-surface-border: #cbd5e17a;
-  --ef-surface-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 22px rgba(15, 23, 42, 0.07);
+  --bs-body-bg: var(--lux-night-bg, #070b14);
+  --bs-body-color: #e8ecf4;
+  --bs-border-color: rgba(148, 163, 184, 0.18);
+  --bs-secondary-color: #94a3b8;
+  --bs-secondary: #64748b;
+  --ef-surface-border: rgba(148, 163, 184, 0.14);
+  --ef-surface-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 32px -16px rgba(0, 0, 0, 0.45);
   --ef-surface-radius: 10px;
-  --ef-divider: #e2e8f0;
+  --ef-divider: rgba(148, 163, 184, 0.14);
   --ef-input-radius: 8px;
-  --ef-input-border: #cbd5e1bd;
-  --ef-input-border-hover: #94a3b8;
+  --ef-input-border: rgba(148, 163, 184, 0.22);
+  --ef-input-border-hover: rgba(148, 163, 184, 0.35);
   --ef-primary: var(--lux-primary);
   --ef-input-border-focus: var(--lux-primary);
   --ef-primary-strong: var(--lux-primary-strong);
-  --ef-primary-soft: var(--lux-primary-soft);
-  --ef-input-bg: #ffffff;
+  --ef-primary-soft: color-mix(in srgb, var(--lux-indigo) 18%, var(--lux-night-panel));
+  --ef-input-bg: var(--lux-night-panel, #0b1324);
   --ef-input-placeholder: #64748b;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: var(--lux-surface);
-    --card: #ffffff;
-    --text: #1a222c;
-    --muted: #475569;
-    --border: #dce3ec;
-    /* Etiquetas y textos secundarios: más oscuros para buen contraste en pantallas claras */
-    --ef-label: #334155;
-    --ef-muted: #475569;
-    --ef-muted-soft: #64748b;
-    --bs-secondary-color: #475569;
-    --bs-secondary: #64748b;
-    --bs-body-color: #1e293b;
-  }
+html[data-lux-theme='light'] {
+  --bg: var(--lux-surface);
+  --card: #ffffff;
+  --text: #1a222c;
+  --muted: #475569;
+  --border: #dce3ec;
+  --ef-label: #334155;
+  --ef-muted: #475569;
+  --ef-muted-soft: #64748b;
+  --bs-body-bg: var(--lux-surface);
+  --bs-body-color: #1e293b;
+  --bs-border-color: #cbd5e1bd;
+  --bs-secondary-color: #475569;
+  --bs-secondary: #64748b;
+  --ef-surface-border: #cbd5e17a;
+  --ef-surface-shadow: 0 1px 2px rgba(15, 23, 42, 0.05), 0 8px 22px rgba(15, 23, 42, 0.07);
+  --ef-divider: #e2e8f0;
+  --ef-input-border: #cbd5e1bd;
+  --ef-input-border-hover: #94a3b8;
+  --ef-primary-soft: var(--lux-primary-soft);
+  --ef-input-bg: #ffffff;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
 }
 
 /* Textos secundarios Bootstrap (suelen quedar demasiado claros por defecto) */
@@ -67,7 +83,7 @@ small.text-muted,
   border-color: var(--ef-input-border, #cbd5e1bd);
   border-radius: var(--ef-input-radius, 8px);
   background-color: var(--ef-input-bg, #fff);
-  color: var(--bs-body-color, #1e293b);
+  color: var(--bs-body-color, var(--text));
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
@@ -1318,5 +1334,41 @@ html {
 .ts-navbar-panel__item:hover:not(:disabled),
 .ts-navbar-panel__item:focus-visible:not(:disabled) {
   color: var(--lux-primary-strong);
-  background: var(--lux-primary-soft);
+  background: var(--ef-primary-soft);
+}
+
+html[data-lux-theme='dark'] .card,
+html[data-lux-theme='dark'] .card-body {
+  background-color: var(--card) !important;
+  border-color: var(--ef-surface-border);
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .main-content,
+html[data-lux-theme='dark'] .ts-content-inner {
+  background: var(--bg);
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .iq-navbar.navbar-light {
+  background: color-mix(in srgb, var(--card) 94%, transparent) !important;
+}
+
+html[data-lux-theme='dark'] .dropdown-menu,
+html[data-lux-theme='dark'] .ts-navbar-panel,
+html[data-lux-theme='dark'] .user-account-menu {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--text);
+}
+
+html[data-lux-theme='dark'] .ts-navbar-panel__header,
+html[data-lux-theme='dark'] .user-account-card {
+  background: color-mix(in srgb, var(--card) 88%, #131d33) !important;
+  border-color: var(--ef-divider) !important;
+}
+
+html[data-lux-theme='dark'] .ts-navbar-panel__header strong,
+html[data-lux-theme='dark'] .user-account-card__identity h6 {
+  color: var(--text) !important;
 }

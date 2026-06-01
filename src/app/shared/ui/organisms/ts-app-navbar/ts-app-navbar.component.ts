@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, computed, inject, OnInit, output, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LuxThemeService } from '../../../../core/theme/lux-theme.service';
 import { UiI18nService } from '../../../../core/i18n/ui-i18n.service';
 import { ShellLayoutService } from '../../../../core/shell/shell-layout.service';
 import type { MiEmpresaResumenDto } from '../../../../core/models/me.model';
@@ -107,6 +108,17 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="mb-2 navbar-nav ms-auto align-items-center navbar-list mb-lg-0">
+            <li class="nav-item d-none d-md-flex">
+              <button
+                type="button"
+                class="ts-navbar-icon-btn ts-theme-toggle"
+                (click)="luxTheme.toggleTheme()"
+                [attr.aria-label]="luxTheme.theme() === 'dark' ? 'Modo claro' : 'Modo nocturno'"
+              >
+                {{ luxTheme.theme() === 'dark' ? '☀' : '☾' }}
+              </button>
+            </li>
+
             <li class="nav-item ts-navbar-search d-none d-xl-flex">
               <div class="input-group search-input">
                 <span class="input-group-text" id="search-input">
@@ -256,18 +268,18 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
         max-width: 100%;
         min-height: 2.45rem;
         padding: 0.35rem 0.65rem 0.35rem 0.5rem;
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--ef-surface-border);
         border-radius: 12px;
-        background: #f8fafc;
-        color: #0f172a;
+        background: color-mix(in srgb, var(--card) 92%, transparent);
+        color: var(--text);
         text-align: left;
       }
 
       .ts-empresa-chip:hover,
       .ts-empresa-chip:focus-visible {
-        border-color: #93c5fd;
-        background: #eff6ff;
-        color: #1d4ed8;
+        border-color: color-mix(in srgb, var(--lux-indigo) 35%, var(--ef-surface-border));
+        background: var(--ef-primary-soft);
+        color: var(--lux-primary-strong);
       }
 
       .ts-empresa-chip__icon {
@@ -668,6 +680,7 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
   ],
 })
 export class TsAppNavbarComponent implements OnInit {
+  readonly luxTheme = inject(LuxThemeService);
   readonly tenant = inject(TenantContextService);
   readonly session = inject(SessionContextService);
   readonly layout = inject(ShellLayoutService);

@@ -318,8 +318,9 @@ interface SetupItem {
       .ts-home-empty {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card, #fff);
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-home-hero {
@@ -375,7 +376,7 @@ interface SetupItem {
 
       .ts-home-company h2 {
         margin: 0.1rem 0 0.35rem;
-        color: #0f172a;
+        color: var(--text);
         font-size: clamp(1.3rem, 2vw, 1.8rem);
         font-weight: 700;
         line-height: 1.1;
@@ -455,7 +456,7 @@ interface SetupItem {
 
       .ts-home-kpi__value {
         display: block;
-        color: var(--lux-app-ink);
+        color: var(--text);
         font-size: 1.05rem;
         line-height: 1.15;
         font-weight: 700;
@@ -698,14 +699,14 @@ interface SetupItem {
         padding: 0.65rem 0.75rem;
         border: 1px solid var(--ef-divider, #e2e8f0);
         border-radius: 8px;
-        color: #334155;
+        color: var(--text);
         text-decoration: none;
-        background: #fff;
+        background: var(--card);
       }
 
       .ts-home-doc:hover {
-        border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--lux-app-border));
-        background: #f8fafc;
+        border-color: color-mix(in srgb, var(--lux-indigo) 28%, var(--ef-divider));
+        background: color-mix(in srgb, var(--lux-primary-soft) 40%, var(--card));
       }
 
       .ts-home-doc strong,

@@ -1,7 +1,20 @@
 <!doctype html>
-<html lang="es" dir="ltr" data-bs-theme="light" data-bs-theme-color="theme-color-default">
+<html lang="es" dir="ltr" data-lux-theme="dark" data-bs-theme="dark" data-bs-theme-color="theme-color-default">
   <head>
     <meta charset="utf-8" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('lux_ui_theme') || localStorage.getItem('pos_ui_theme');
+          var theme = t === 'light' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-lux-theme', theme);
+          document.documentElement.setAttribute('data-bs-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-lux-theme', 'dark');
+          document.documentElement.setAttribute('data-bs-theme', 'dark');
+        }
+      })();
+    </script>
     <title>efactura-ec</title>
     <link
       rel="icon"
@@ -10,6 +23,7 @@
     />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
