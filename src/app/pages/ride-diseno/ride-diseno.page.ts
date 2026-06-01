@@ -368,9 +368,10 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         min-height: min(720px, 75vh);
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         box-shadow: var(--ef-surface-shadow);
         overflow: hidden;
+        color: var(--text);
       }
 
       .ts-ride-settings__header {
@@ -381,7 +382,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         gap: 0.75rem 1rem;
         padding: 1rem 1.1rem;
         border-bottom: 1px solid var(--ef-divider, #e2e8f0);
-        background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #fafbfc 0%, #fff 100%));
       }
 
       .ts-ride-settings__eyebrow {
@@ -389,7 +390,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: #64748b;
+        color: var(--muted);
       }
 
       .ts-ride-settings__actions {
@@ -411,7 +412,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         gap: 0.2rem;
         padding: 0.65rem 0.5rem;
         border-right: 1px solid var(--ef-divider, #e2e8f0);
-        background: #f8fafc;
+        background: var(--ef-surface-raised, #f8fafc);
         overflow-y: auto;
       }
 
@@ -419,7 +420,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         border: 0;
         border-radius: 6px;
         background: transparent;
-        color: #475569;
+        color: var(--muted);
         font-size: 0.78rem;
         font-weight: 500;
         text-align: left;
@@ -433,9 +434,9 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
       }
 
       .ts-ride-settings__nav-btn--active {
-        background: #fff;
-        color: #1e5b96;
-        box-shadow: 0 1px 3px rgba(17, 24, 39, 0.08);
+        background: color-mix(in srgb, var(--lux-indigo) 12%, var(--card));
+        color: var(--lux-primary-strong);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 18%, transparent);
       }
 
       .ts-ride-settings__panel {
@@ -601,9 +602,10 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
       .ts-ride-panel {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         padding: 1.25rem;
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-ride-preview {

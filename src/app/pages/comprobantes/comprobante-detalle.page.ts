@@ -289,9 +289,10 @@ import {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
         padding: 1rem 1.15rem;
-        background: #fff;
+        background: var(--card);
         box-shadow: var(--ef-surface-shadow);
         height: 100%;
+        color: var(--text);
       }
       .comprobante-detail-dl {
         display: grid;
@@ -310,6 +311,7 @@ import {
       }
       .comprobante-detail-dl dd {
         margin: 0;
+        color: var(--text);
       }
       .comprobante-totals-read > div {
         display: flex;

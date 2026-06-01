@@ -199,9 +199,10 @@ function escapeHtml(s: string): string {
         flex-wrap: wrap;
         margin-bottom: 0.8rem;
         padding: 0.72rem;
-        background: #fff;
-        border: 1px solid #e2e8f0;
+        background: var(--card);
+        border: 1px solid var(--ef-surface-border, #e2e8f0);
         border-radius: 12px;
+        box-shadow: var(--ef-surface-shadow);
       }
       .maestro-filter {
         display: grid;
@@ -232,11 +233,12 @@ function escapeHtml(s: string): string {
         top: 50%;
         transform: translate(-50%, -50%);
         width: min(720px, calc(100vw - 2rem));
-        background: #fff;
-        border: 1px solid rgba(148, 163, 184, 0.28);
+        background: var(--card);
+        border: 1px solid var(--ef-surface-border);
         border-radius: 16px;
-        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+        box-shadow: var(--ef-surface-shadow);
         overflow: hidden;
+        color: var(--text);
       }
       .ts-form-modal--import {
         width: min(560px, calc(100vw - 2rem));
@@ -247,7 +249,8 @@ function escapeHtml(s: string): string {
         gap: 0.65rem;
         padding: 0.9rem 1rem;
         border-bottom: 1px solid rgba(226, 232, 240, 0.95);
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #f8fafc 100%));
+        border-bottom-color: var(--ef-divider);
       }
       .ts-form-modal__head-text {
         flex: 1;
@@ -332,8 +335,6 @@ function escapeHtml(s: string): string {
         justify-content: flex-end;
         gap: 0.5rem;
         padding: 0.85rem 1.1rem 1.05rem;
-        border-top: 1px solid rgba(226, 232, 240, 0.95);
-        background: #f8fafc;
       }
       .ts-confirm-modal {
         position: fixed;

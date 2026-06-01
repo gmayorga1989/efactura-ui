@@ -493,40 +493,6 @@ interface ConfirmState {
         margin-bottom: 0.7rem;
       }
 
-      .ts-tabs {
-        display: inline-flex;
-        gap: 0.25rem;
-        padding: 0.25rem;
-        border: 1px solid #e4e9f2;
-        border-radius: 8px;
-        background: #f7f9fd;
-      }
-
-      .ts-tab {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        min-height: 2.1rem;
-        padding: 0 0.72rem;
-        border: 0;
-        border-radius: 6px;
-        background: transparent;
-        color: #536179;
-        font-weight: 600;
-        white-space: nowrap;
-      }
-
-      .ts-tab:hover {
-        background: #eef3ff;
-        color: #2f46c0;
-      }
-
-      .ts-tab.active {
-        background: #3a57e8;
-        color: #ffffff;
-        box-shadow: 0 8px 18px rgba(58, 87, 232, 0.2);
-      }
-
       .ts-grid-toolbar {
         display: flex;
         align-items: center;

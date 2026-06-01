@@ -938,10 +938,11 @@ type DireccionFormGroup = ReturnType<MaestroFormPage['createDireccionGroup']>;
       }
       .form-section {
         padding: 0.9rem;
-        background: #fff;
+        background: var(--card);
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: 14px;
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
       .readonly-control {
         color: #475569;
@@ -1217,8 +1218,6 @@ type DireccionFormGroup = ReturnType<MaestroFormPage['createDireccionGroup']>;
         align-items: center;
         gap: 0.5rem;
         padding: 0.85rem 1.1rem 1.05rem;
-        border-top: 1px solid rgba(226, 232, 240, 0.95);
-        background: linear-gradient(180deg, #fafbfc 0%, #f1f5f9 100%);
       }
       .ts-form-modal--wide {
         width: min(860px, calc(100vw - 2rem));

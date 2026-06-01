@@ -591,9 +591,10 @@ interface ResumenMesCard {
       .ts-panel {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         padding: 1.25rem;
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-panel-header {
@@ -651,8 +652,9 @@ interface ResumenMesCard {
         padding: 1.1rem 1.2rem;
         border: 1px solid #e2e8f0;
         border-radius: 12px;
-        background: linear-gradient(160deg, #f8fafc 0%, #f1f5f9 55%, #eef2ff 100%);
-        box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+        background: color-mix(in srgb, var(--bg) 15%, var(--card));
+        box-shadow: var(--ef-surface-shadow);
+        border-color: var(--ef-surface-border);
       }
 
       .sri-sync-card__head {
@@ -669,8 +671,8 @@ interface ResumenMesCard {
         height: 2.5rem;
         border-radius: 10px;
         border: 1px solid #c7d2fe;
-        background: #fff;
-        color: #4f46e5;
+        background: var(--ef-surface-raised, #fff);
+        color: var(--lux-primary-strong);
         box-shadow: 0 1px 2px rgba(79, 70, 229, 0.12);
       }
 
@@ -717,9 +719,9 @@ interface ResumenMesCard {
       }
 
       .sri-period-pill--active {
-        background: #fff;
-        color: #1d4ed8;
-        box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+        background: color-mix(in srgb, var(--lux-indigo) 14%, var(--card));
+        color: var(--lux-primary-strong);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 20%, transparent);
       }
 
       .sri-sync-card__footer {
@@ -751,10 +753,10 @@ interface ResumenMesCard {
         padding: 0.5rem 0.85rem;
         border: 1px solid #e2e8f0;
         border-radius: 8px;
-        background: #fff;
+        background: var(--ef-input-bg);
         font-size: 0.8125rem;
         font-weight: 600;
-        color: #334155;
+        color: var(--text);
         white-space: nowrap;
       }
 
@@ -966,7 +968,7 @@ interface ResumenMesCard {
         padding: 0.95rem 1rem;
         border-radius: 14px;
         border: 1px solid #e2e8f0;
-        background: #fff;
+        background: var(--card);
         min-height: 10.5rem;
         min-width: 0;
         overflow: hidden;
@@ -978,18 +980,18 @@ interface ResumenMesCard {
       }
 
       .sri-month-card--descargado {
-        background: linear-gradient(165deg, #ecfdf5 0%, #f0fdf4 55%, #fff 100%);
-        border-color: #86efac;
+        background: color-mix(in srgb, #16a34a 12%, var(--card));
+        border-color: color-mix(in srgb, #22c55e 35%, var(--ef-surface-border));
       }
 
       .sri-month-card--pendiente {
-        background: linear-gradient(165deg, #fffbeb 0%, #fef9c3 55%, #fff 100%);
-        border-color: #fcd34d;
+        background: color-mix(in srgb, #d97706 10%, var(--card));
+        border-color: color-mix(in srgb, #fbbf24 35%, var(--ef-surface-border));
       }
 
       .sri-month-card--futuro {
-        background: linear-gradient(165deg, #f8fafc 0%, #fff 100%);
-        border-color: #e2e8f0;
+        background: color-mix(in srgb, var(--bg) 18%, var(--card));
+        border-color: var(--ef-surface-border);
         opacity: 0.88;
       }
 

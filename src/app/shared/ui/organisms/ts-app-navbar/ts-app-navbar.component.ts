@@ -111,7 +111,7 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
             <li class="nav-item d-none d-md-flex ts-navbar-theme-item">
               <button
                 type="button"
-                class="ts-navbar-icon-btn ts-theme-toggle"
+                class="lux-theme-btn ts-theme-toggle"
                 (click)="luxTheme.toggleTheme()"
                 [attr.aria-label]="luxTheme.theme() === 'dark' ? 'Modo claro' : 'Modo nocturno'"
               >
@@ -326,11 +326,6 @@ import { TenantContextService } from '../../../../core/tenant/tenant-context.ser
 
       .ts-navbar-theme-item {
         margin-right: 0.55rem;
-      }
-
-      .ts-theme-toggle {
-        font-size: 1.05rem;
-        line-height: 1;
       }
 
       .ts-navbar-search .search-input {

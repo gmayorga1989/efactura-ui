@@ -547,8 +547,9 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
       .ts-reports-empty {
         border: 1px solid rgba(17, 24, 39, 0.08);
         border-radius: 10px;
-        background: #fff;
-        box-shadow: 0 12px 32px rgba(15, 23, 42, 0.05);
+        background: var(--card);
+        box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-reports-tabs {
@@ -556,7 +557,7 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
         flex-wrap: wrap;
         gap: 0.35rem;
         padding: 0.45rem;
-        background: #f8fafc;
+        background: var(--ef-tabs-bg, #f8fafc);
       }
 
       .ts-reports-tabs__btn {
@@ -570,9 +571,9 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
       }
 
       .ts-reports-tabs__btn--active {
-        background: #fff;
-        color: #0f766e;
-        box-shadow: 0 1px 4px rgba(15, 23, 42, 0.1);
+        background: color-mix(in srgb, var(--lux-indigo) 14%, var(--card));
+        color: var(--lux-primary-strong);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 20%, transparent);
       }
 
       .ts-reports-filters {
@@ -605,7 +606,7 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
         padding: 0.28rem 0.45rem;
         color: #1e293b;
         font-size: 0.8rem;
-        background: #fff;
+        background: var(--ef-input-bg);
       }
 
       .ts-reports-filters__wide {
@@ -641,7 +642,7 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
       .ts-reports-card strong {
         display: block;
         margin-top: 0.25rem;
-        color: #0f172a;
+        color: var(--text);
         font-size: 1.22rem;
         line-height: 1.2;
       }
@@ -815,8 +816,8 @@ const REPORT_TABS: { id: ReportTab; labelKey: string; fallback: string; endpoint
         padding: 0.62rem 0.65rem;
         border-top: 1px solid rgba(17, 24, 39, 0.06);
         border-bottom: 0;
-        background: #fff;
-        color: #334155;
+        background: var(--card);
+        color: var(--text);
         font-size: 0.76rem;
         vertical-align: top;
         white-space: nowrap;

@@ -499,8 +499,9 @@ const COMMON_TIMEZONES = [
       .ts-panel {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-company-summary {
@@ -518,8 +519,8 @@ const COMMON_TIMEZONES = [
         overflow: hidden;
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: 8px;
-        background: #f8fafc;
-        color: #334155;
+        background: var(--ef-surface-raised, #f8fafc);
+        color: var(--text);
         font-weight: 700;
       }
 
@@ -565,7 +566,7 @@ const COMMON_TIMEZONES = [
       .ts-panel-footer,
       .ts-empty-state {
         margin: 0.25rem 0 0;
-        color: #64748b;
+        color: var(--muted);
         font-size: 0.875rem;
       }
 
@@ -592,7 +593,7 @@ const COMMON_TIMEZONES = [
       }
 
       .ts-field span {
-        color: #475569;
+        color: var(--ef-label);
         font-size: 0.8125rem;
         font-weight: 600;
       }
@@ -604,8 +605,8 @@ const COMMON_TIMEZONES = [
       }
 
       .ts-field .form-control[readonly] {
-        background: #f8fafc;
-        color: #0f172a;
+        background: var(--ef-surface-raised, #f8fafc);
+        color: var(--text);
       }
 
       .ts-check-field {
