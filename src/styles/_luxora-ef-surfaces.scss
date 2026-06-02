@@ -1,6 +1,6 @@
 /**
- * Superficies eFactura — tabs, modales, filtros y paneles (modo nocturno / claro).
- * Usar variables para que componentes con estilos locales hereden el mismo aspecto.
+ * Superficies eFactura — tabs, modales, filtros, diseño RIDE/correo, SRI.
+ * CSS estándar compartido; anula estilos locales con !important solo en nocturno.
  */
 
 html[data-lux-theme='dark'] {
@@ -34,7 +34,7 @@ html:not([data-lux-theme='light']) {
   --ef-modal-footer-bg: color-mix(in srgb, var(--bg) 20%, var(--card));
 }
 
-/* Tabs segmentados (vendedores, sucursales, etc.) */
+/* —— Tabs —— */
 .ts-tabs {
   border: 1px solid var(--ef-tabs-border, #e4e9f2);
   background: var(--ef-tabs-bg, #f7f9fd);
@@ -55,12 +55,45 @@ html:not([data-lux-theme='light']) {
   box-shadow: 0 8px 18px color-mix(in srgb, var(--lux-indigo) 28%, transparent);
 }
 
-.ts-form-modal__footer {
+/* —— Modales (plantilla ts-form-modal + legacy ts-modal sucursales) —— */
+.ts-form-modal__footer,
+.ts-modal-footer {
   border-top: 1px solid var(--ef-divider);
   background: var(--ef-modal-footer-bg) !important;
 }
 
-/* Filtros maestros */
+.ts-modal {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--text);
+  box-shadow: var(--ef-surface-shadow) !important;
+}
+
+.ts-modal-header {
+  background: var(--ef-page-header-bg) !important;
+  border-bottom-color: var(--ef-divider) !important;
+}
+
+.ts-modal-header h5,
+.ts-modal-header span {
+  color: var(--text) !important;
+}
+
+.ts-modal-header span {
+  color: var(--muted) !important;
+}
+
+.ts-modal-close {
+  background: var(--ef-surface-raised) !important;
+  border-color: var(--ef-surface-border) !important;
+  color: var(--muted) !important;
+}
+
+.ts-modal-form .form-label {
+  color: var(--ef-label) !important;
+}
+
+/* —— Filtros —— */
 .maestro-filters {
   background: var(--card) !important;
   border-color: var(--ef-surface-border) !important;
@@ -71,7 +104,22 @@ html:not([data-lux-theme='light']) {
   color: var(--ef-muted-soft, #64748b);
 }
 
-/* Reportes */
+.ts-role-filters {
+  background: var(--ef-tabs-bg) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+.ts-role-filter {
+  color: var(--muted) !important;
+}
+
+.ts-role-filter:hover,
+.ts-role-filter.active {
+  color: var(--lux-primary-strong) !important;
+  background: var(--ef-primary-soft) !important;
+}
+
+/* —— Reportes —— */
 .ts-reports-tabs,
 .ts-reports-filters,
 .ts-reports-panel,
@@ -113,7 +161,7 @@ html:not([data-lux-theme='light']) {
   color: var(--text) !important;
 }
 
-/* Empresa / paneles administración */
+/* —— Empresa / paneles —— */
 .ts-company-summary,
 .ts-panel {
   background: var(--card) !important;
@@ -141,33 +189,193 @@ html:not([data-lux-theme='light']) {
   color: var(--text);
 }
 
-/* Modales con estilos locales duplicados */
+/* —— Facturación —— */
+.factura-section {
+  background: var(--card) !important;
+  color: var(--text);
+  border-color: var(--ef-surface-border) !important;
+}
+
+.factura-section__title,
+.factura-section__subtitle {
+  color: var(--text) !important;
+}
+
+/* —— Diseño RIDE / correo (paneles compartidos) —— */
+.ts-ride-settings,
+.ts-email-settings,
+.ts-ride-panel,
+.ts-email-panel {
+  background: var(--card) !important;
+  color: var(--text);
+  border-color: var(--ef-surface-border) !important;
+}
+
+.ts-ride-settings__header,
+.ts-email-settings__header {
+  background: var(--ef-page-header-bg) !important;
+  border-bottom-color: var(--ef-divider) !important;
+}
+
+.ts-ride-settings__eyebrow,
+.ts-email-settings__eyebrow,
+.ts-ride-section__hint,
+.ts-ride-settings__note,
+.ts-email-field__help,
+.ts-email-settings__note {
+  color: var(--muted) !important;
+}
+
+.ts-ride-settings__title,
+.ts-email-settings__title,
+.ts-ride-section__title,
+.ts-email-section__title {
+  color: var(--text) !important;
+}
+
+.ts-ride-settings__nav,
+.ts-email-settings__nav {
+  background: var(--ef-surface-raised) !important;
+  border-right-color: var(--ef-divider) !important;
+}
+
+.ts-ride-settings__nav-btn,
+.ts-email-settings__nav-btn {
+  color: var(--muted) !important;
+}
+
+.ts-ride-settings__nav-btn:hover,
+.ts-email-settings__nav-btn:hover {
+  background: var(--ef-primary-soft) !important;
+  color: var(--text) !important;
+}
+
+.ts-ride-settings__nav-btn--active,
+.ts-email-settings__nav-btn--active {
+  background: color-mix(in srgb, var(--lux-indigo) 12%, var(--card)) !important;
+  color: var(--lux-primary-strong) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 18%, transparent) !important;
+}
+
+.ts-ride-preset__label,
+.ts-email-preset__label {
+  color: var(--text) !important;
+}
+
+.ts-ride-color,
+.ts-email-color,
+.ts-ride-switch-list li,
+.ts-email-switch-list li {
+  background: var(--ef-surface-raised) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+.ts-ride-color__name,
+.ts-email-color__name,
+.ts-ride-color__help {
+  color: var(--text) !important;
+}
+
+.ts-ride-color__help {
+  color: var(--muted) !important;
+}
+
+/* —— Permisos (roles) —— */
+.ts-permission-picker {
+  background: var(--card) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+.ts-permission-picker__head {
+  background: var(--ef-surface-raised) !important;
+  border-bottom-color: var(--ef-divider) !important;
+  color: var(--text) !important;
+}
+
+.ts-permission-picker__head small {
+  color: var(--muted) !important;
+}
+
+.ts-permission-picker__list {
+  background: var(--card) !important;
+}
+
+.ts-permission-option:hover {
+  background: var(--ef-primary-soft) !important;
+}
+
+.ts-permission-option strong {
+  color: var(--text) !important;
+}
+
+.ts-permission-option small {
+  color: var(--muted) !important;
+}
+
+/* —— SRI — tarjetas mensuales —— */
+.sri-month-card__month {
+  color: var(--text) !important;
+}
+
+.sri-month-card__metric-label {
+  color: var(--muted) !important;
+}
+
+.sri-month-card__metric-value {
+  color: var(--text) !important;
+}
+
+.sri-month-card--futuro .sri-month-card__month,
+.sri-month-card--futuro .sri-month-card__metric-label,
+.sri-month-card--futuro .sri-month-card__metric-value {
+  color: var(--ef-muted-soft) !important;
+}
+
+/* —— Formularios maestros —— */
+.form-section,
+.maestro-form .form-section {
+  background: var(--card) !important;
+  color: var(--text);
+}
+
+/* —— Modales oscuros (anula estilos locales en componentes) —— */
 html[data-lux-theme='dark'] .ts-form-modal,
+html[data-lux-theme='dark'] .ts-detail-modal,
 html[data-lux-theme='dark'] .ts-confirm-modal,
-html[data-lux-theme='dark'] .avatar-crop-modal {
+html[data-lux-theme='dark'] .avatar-crop-modal,
+html[data-lux-theme='dark'] .ts-modal {
   background: var(--card) !important;
   border-color: var(--ef-surface-border) !important;
   color: var(--text);
 }
 
 html[data-lux-theme='dark'] .ts-form-modal__header,
-html[data-lux-theme='dark'] .ts-form-modal__footer {
+html[data-lux-theme='dark'] .ts-detail-modal__header,
+html[data-lux-theme='dark'] .ts-form-modal__footer,
+html[data-lux-theme='dark'] .ts-modal-header,
+html[data-lux-theme='dark'] .ts-modal-footer {
   background: var(--ef-page-header-bg) !important;
   border-color: var(--ef-divider) !important;
 }
 
 html[data-lux-theme='dark'] .ts-form-modal__header h3,
-html[data-lux-theme='dark'] .ts-confirm-modal h3 {
+html[data-lux-theme='dark'] .ts-detail-modal__header h3,
+html[data-lux-theme='dark'] .ts-confirm-modal h3,
+html[data-lux-theme='dark'] .ts-confirm-modal h5 {
   color: var(--text) !important;
 }
 
-html[data-lux-theme='dark'] .ts-form-modal__close {
+html[data-lux-theme='dark'] .ts-form-modal__close,
+html[data-lux-theme='dark'] .ts-modal-close {
   background: var(--ef-surface-raised) !important;
   border-color: var(--ef-surface-border) !important;
   color: var(--muted) !important;
 }
 
-/* Bootstrap nav-tabs / pills (SRI, RIDE, etc.) */
+html[data-lux-theme='dark'] .ts-form-modal__body .form-label {
+  color: var(--ef-label) !important;
+}
+
 html[data-lux-theme='dark'] .nav-tabs {
   border-bottom-color: var(--ef-divider);
 }
@@ -199,13 +407,6 @@ html[data-lux-theme='dark'] .nav-pills .nav-link.active {
   color: #fff;
 }
 
-/* Formularios maestros / productos */
-.form-section,
-.maestro-form .form-section {
-  background: var(--card) !important;
-  color: var(--text);
-}
-
 html[data-lux-theme='dark'] .sri-tabs__btn {
   color: var(--muted);
 }
@@ -219,8 +420,7 @@ html[data-lux-theme='dark'] .sri-tabs__btn--active {
   border-bottom-color: var(--lux-indigo);
 }
 
-html[data-lux-theme='dark'] .comprobante-detail-card,
-html[data-lux-theme='dark'] .comprobante-detail-grid-wrap {
+html[data-lux-theme='dark'] .comprobante-detail-card {
   background: var(--card) !important;
   color: var(--text);
 }
@@ -242,7 +442,16 @@ html[data-lux-theme='dark'] .ts-reports-table tfoot td {
   color: var(--text) !important;
 }
 
-/* Botón tema Luxora (Suite + eFactura) */
+html[data-lux-theme='dark'] .ts-choice-card {
+  background: var(--ef-input-bg) !important;
+  border-color: var(--ef-surface-border) !important;
+}
+
+html[data-lux-theme='dark'] .ts-choice-card--active {
+  background: color-mix(in srgb, var(--lux-indigo) 14%, var(--card)) !important;
+}
+
+/* Botón tema Luxora */
 .lux-theme-btn {
   display: grid;
   place-items: center;

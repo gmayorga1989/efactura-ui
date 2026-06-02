@@ -407,12 +407,14 @@ import {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: 10px;
         padding: 1rem 1.15rem;
-        background: #fff;
+        background: var(--card);
+        color: var(--text);
       }
       .factura-section__title {
         font-size: 1rem;
         font-weight: 600;
         margin-bottom: 0.85rem;
+        color: var(--text);
       }
       .factura-section__subtitle {
         font-size: 0.9rem;

@@ -448,19 +448,19 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
       .ts-ride-settings__note {
         margin: 1rem 0 0;
         font-size: 0.75rem;
-        color: #64748b;
+        color: var(--muted);
       }
 
       .ts-ride-section__title {
         font-size: 0.82rem;
         font-weight: 600;
-        color: #0f172a;
+        color: var(--text);
         margin-bottom: 0.35rem;
       }
 
       .ts-ride-section__hint {
         font-size: 0.75rem;
-        color: #64748b;
+        color: var(--muted);
         margin-bottom: 0.75rem;
       }
 
@@ -478,7 +478,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
       .ts-ride-preset__label {
         font-size: 0.78rem;
         font-weight: 500;
-        color: #1e293b;
+        color: var(--text);
         line-height: 1.35;
       }
 
@@ -496,7 +496,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
         padding: 0.55rem;
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: 8px;
-        background: #fafbfc;
+        background: var(--ef-surface-raised, #fafbfc);
         cursor: pointer;
       }
 
@@ -522,7 +522,7 @@ const RIDE_DESIGN_PRESETS: { id: RideDisenoBase; labelKey: string }[] = [
       .ts-ride-color__name {
         font-size: 0.72rem;
         font-weight: 500;
-        color: #334155;
+        color: var(--text);
         line-height: 1.25;
       }
 

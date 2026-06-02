@@ -199,11 +199,12 @@ small.text-muted,
   background-color: var(--ef-surface-raised, #fafbfc);
 }
 
-/* Opciones tipo tarjeta (presets de diseño correo/RIDE, etc.) */
+/* Opciones tipo tarjeta (presets diseño RIDE/correo, etc.) */
 .ts-choice-card {
   border: 1px solid var(--ef-input-border, #cbd5e1bd);
   border-radius: var(--ef-input-radius, 8px);
-  background: #fff;
+  background: var(--card);
+  color: var(--text);
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
@@ -212,13 +213,18 @@ small.text-muted,
 
 .ts-choice-card:hover {
   border-color: var(--ef-input-border-hover, #94a3b8);
-  background: #fafbfc;
+  background: var(--ef-input-bg-hover, var(--ef-primary-soft));
 }
 
 .ts-choice-card--active {
   border-color: var(--ef-input-border-focus, var(--lux-indigo));
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(58, 87, 232, 0.12);
+  background: color-mix(in srgb, var(--lux-indigo) 10%, var(--card));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--lux-indigo) 18%, transparent);
+}
+
+.ts-ride-preset__label,
+.ts-email-preset__label {
+  color: var(--text);
 }
 
 *,

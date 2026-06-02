@@ -334,10 +334,11 @@ interface ConfirmState {
       .ts-modal {
         width: min(660px, 100%);
         border-radius: 8px;
-        background: #ffffff;
+        background: var(--card);
         overflow: hidden;
-        border: 1px solid rgba(226, 232, 240, 0.9);
-        box-shadow: 0 28px 80px rgba(15, 23, 42, 0.28);
+        border: 1px solid var(--ef-surface-border);
+        box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-modal-header {
@@ -346,8 +347,8 @@ interface ConfirmState {
         justify-content: space-between;
         gap: 1rem;
         padding: 1rem 1.15rem 0.85rem;
-        border-bottom: 1px solid #edf1f7;
-        background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+        border-bottom: 1px solid var(--ef-divider);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #fbfcff 100%));
       }
 
       .ts-modal-heading {
@@ -372,7 +373,7 @@ interface ConfirmState {
       .ts-modal-header span {
         display: block;
         margin-bottom: 0.18rem;
-        color: #8a92a6;
+        color: var(--muted);
         font-size: 0.68rem;
         font-weight: 700;
         line-height: 1;
@@ -381,7 +382,7 @@ interface ConfirmState {
 
       .ts-modal-header h5 {
         margin: 0;
-        color: #1f2937;
+        color: var(--text);
         font-size: 1.05rem;
         font-weight: 650;
         line-height: 1.2;
@@ -392,10 +393,10 @@ interface ConfirmState {
         place-items: center;
         width: 2rem;
         height: 2rem;
-        border: 1px solid #e1e7f0;
+        border: 1px solid var(--ef-surface-border);
         border-radius: 6px;
-        background: #ffffff;
-        color: #667085;
+        background: var(--ef-surface-raised);
+        color: var(--muted);
         transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
       }
 
@@ -407,12 +408,13 @@ interface ConfirmState {
 
       .ts-confirm-modal {
         width: min(390px, 100%);
-        border: 1px solid rgba(226, 232, 240, 0.95);
+        border: 1px solid var(--ef-surface-border);
         border-radius: 8px;
-        background: #ffffff;
+        background: var(--card);
         padding: 1.15rem;
         text-align: center;
-        box-shadow: 0 28px 80px rgba(15, 23, 42, 0.28);
+        box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-confirm-icon {

@@ -1006,7 +1006,7 @@ interface ResumenMesCard {
       .sri-month-card__month {
         font-weight: 700;
         font-size: 0.9375rem;
-        color: #0f172a;
+        color: var(--text);
         letter-spacing: -0.01em;
       }
 
@@ -1056,13 +1056,13 @@ interface ResumenMesCard {
         font-weight: 600;
         text-transform: uppercase;
         letter-spacing: 0.03em;
-        color: #64748b;
+        color: var(--muted);
       }
 
       .sri-month-card__metric-value {
         font-size: 1.05rem;
         font-weight: 700;
-        color: #0f172a;
+        color: var(--text);
         line-height: 1.2;
       }
 

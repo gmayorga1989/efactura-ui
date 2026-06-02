@@ -220,9 +220,10 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
         min-height: min(720px, 75vh);
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         box-shadow: var(--ef-surface-shadow);
         overflow: hidden;
+        color: var(--text);
       }
 
       .ts-email-settings__header {
@@ -233,7 +234,7 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
         gap: 0.75rem 1rem;
         padding: 1rem 1.1rem;
         border-bottom: 1px solid var(--ef-divider, #e2e8f0);
-        background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #fafbfc 0%, #fff 100%));
       }
 
       .ts-email-settings__eyebrow {
@@ -241,13 +242,13 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
-        color: #64748b;
+        color: var(--muted);
       }
 
       .ts-email-settings__title {
         font-size: 0.92rem;
         font-weight: 600;
-        color: #0f172a;
+        color: var(--text);
       }
 
       .ts-email-settings__actions {
@@ -269,7 +270,7 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
         gap: 0.2rem;
         padding: 0.65rem 0.5rem;
         border-right: 1px solid var(--ef-divider, #e2e8f0);
-        background: #f8fafc;
+        background: var(--ef-surface-raised, #f8fafc);
         overflow-y: auto;
       }
 
@@ -277,7 +278,7 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
         border: 0;
         border-radius: 6px;
         background: transparent;
-        color: #475569;
+        color: var(--muted);
         font-size: 0.78rem;
         font-weight: 500;
         text-align: left;
@@ -291,9 +292,9 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
       }
 
       .ts-email-settings__nav-btn--active {
-        background: #fff;
-        color: #1e5b96;
-        box-shadow: 0 1px 3px rgba(17, 24, 39, 0.08);
+        background: color-mix(in srgb, var(--lux-indigo) 12%, var(--card));
+        color: var(--lux-primary-strong);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--lux-indigo) 18%, transparent);
       }
 
       .ts-email-settings__panel {
@@ -305,7 +306,7 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
       .ts-email-section__title {
         font-size: 0.82rem;
         font-weight: 600;
-        color: #0f172a;
+        color: var(--text);
         margin-bottom: 0.5rem;
       }
 
@@ -323,7 +324,7 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
       .ts-email-preset__label {
         font-size: 0.78rem;
         font-weight: 500;
-        color: #1e293b;
+        color: var(--text);
         line-height: 1.35;
       }
 
@@ -401,9 +402,10 @@ const PRESET_CORPORATIVO: EmailPlantilla = {
       .ts-email-panel {
         border: 1px solid var(--ef-surface-border, #cbd5e1);
         border-radius: var(--ef-surface-radius, 10px);
-        background: #fff;
+        background: var(--card);
         padding: 1.25rem;
         box-shadow: var(--ef-surface-shadow);
+        color: var(--text);
       }
 
       .ts-email-preview {

@@ -226,8 +226,8 @@ function escapeHtml(value: unknown): string {
         gap: 0.35rem;
         margin-bottom: 0.9rem;
         padding: 0.25rem;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
+        background: var(--ef-tabs-bg, #f8fafc);
+        border: 1px solid var(--ef-surface-border);
         border-radius: 12px;
       }
       .ts-role-filter {
@@ -235,15 +235,15 @@ function escapeHtml(value: unknown): string {
         padding: 0.28rem 0.7rem;
         border: 0;
         border-radius: 9px;
-        color: #475569;
+        color: var(--muted);
         background: transparent;
         font-size: 0.8rem;
         font-weight: 700;
       }
       .ts-role-filter:hover,
       .ts-role-filter.active {
-        color: #1d4ed8;
-        background: #eff6ff;
+        color: var(--lux-primary-strong);
+        background: var(--ef-primary-soft);
       }
       .ts-modal-backdrop {
         position: fixed;
@@ -261,11 +261,12 @@ function escapeHtml(value: unknown): string {
         top: 50%;
         transform: translate(-50%, -50%);
         width: min(640px, calc(100vw - 2rem));
-        background: #fff;
-        border: 1px solid rgba(148, 163, 184, 0.28);
+        background: var(--card);
+        border: 1px solid var(--ef-surface-border);
         border-radius: 16px;
-        box-shadow: 0 24px 60px rgba(15, 23, 42, 0.22);
+        box-shadow: var(--ef-surface-shadow);
         overflow: hidden;
+        color: var(--text);
       }
       .ts-form-modal__header,
       .ts-detail-modal__header {
@@ -273,8 +274,8 @@ function escapeHtml(value: unknown): string {
         align-items: center;
         gap: 0.8rem;
         padding: 1rem 1.1rem;
-        border-bottom: 1px solid rgba(226, 232, 240, 0.95);
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        border-bottom: 1px solid var(--ef-divider);
+        background: var(--ef-page-header-bg, linear-gradient(180deg, #ffffff 0%, #f8fafc 100%));
       }
       .ts-detail-modal__header {
         justify-content: space-between;
@@ -345,23 +346,24 @@ function escapeHtml(value: unknown): string {
         background: #f8fafc;
       }
       .ts-permission-picker {
-        border: 1px solid #e2e8f0;
+        border: 1px solid var(--ef-surface-border);
         border-radius: 12px;
         overflow: hidden;
+        background: var(--card);
       }
       .ts-permission-picker__head {
         display: flex;
         justify-content: space-between;
         gap: 1rem;
         padding: 0.65rem 0.8rem;
-        color: #334155;
-        background: #f8fafc;
-        border-bottom: 1px solid #e2e8f0;
+        color: var(--text);
+        background: var(--ef-surface-raised);
+        border-bottom: 1px solid var(--ef-divider);
         font-size: 0.82rem;
         font-weight: 750;
       }
       .ts-permission-picker__head small {
-        color: #64748b;
+        color: var(--muted);
         font-weight: 700;
       }
       .ts-permission-picker__list {
@@ -370,6 +372,7 @@ function escapeHtml(value: unknown): string {
         max-height: 260px;
         overflow: auto;
         padding: 0.45rem;
+        background: var(--card);
       }
       .ts-permission-option {
         display: flex;
@@ -380,7 +383,7 @@ function escapeHtml(value: unknown): string {
         cursor: pointer;
       }
       .ts-permission-option:hover {
-        background: #f8fafc;
+        background: var(--ef-primary-soft);
       }
       .ts-permission-option input {
         margin-top: 0.15rem;
@@ -390,11 +393,11 @@ function escapeHtml(value: unknown): string {
         gap: 0.1rem;
       }
       .ts-permission-option strong {
-        color: #0f172a;
+        color: var(--text);
         font-size: 0.8rem;
       }
       .ts-permission-option small {
-        color: #64748b;
+        color: var(--muted);
         font-size: 0.76rem;
       }
       .ts-form-modal__footer {
