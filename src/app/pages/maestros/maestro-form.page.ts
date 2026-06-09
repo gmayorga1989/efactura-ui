@@ -16,6 +16,7 @@ import {
   type ClienteProveedor,
   type ClienteProveedorPayload,
   type ClienteProveedorTipo,
+  type ConsultaCedulaResponse,
   type ConsultaRucResponse,
   type ImpuestoCatalogoItem,
   type ListaPrecioCreatePayload,
@@ -102,6 +103,11 @@ type DireccionFormGroup = ReturnType<MaestroFormPage['createDireccionGroup']>;
         @if (config().clase === 'cliente' && clienteForm.controls.tipoIdentificacion.value === '04') {
           <button type="button" class="btn btn-soft-primary btn-sm" (click)="consultarRuc()" [disabled]="loading() || sriLoading()">
             {{ sriLoading() ? t('masters.querying') : t('masters.queryRuc') }}
+          </button>
+        }
+        @if (config().clase === 'cliente' && clienteForm.controls.tipoIdentificacion.value === '05') {
+          <button type="button" class="btn btn-soft-primary btn-sm" (click)="consultarCedula()" [disabled]="loading() || sriLoading()">
+            {{ sriLoading() ? t('masters.querying') : t('masters.queryCedula') }}
           </button>
         }
         @if (config().clase === 'cliente' && id()) {
@@ -2536,6 +2542,15 @@ export class MaestroFormPage implements OnInit, OnDestroy {
     this.consultarRucPorNumero(ruc);
   }
 
+  consultarCedula(): void {
+    const cedula = this.clienteForm.controls.identificacion.value.trim();
+    if (!/^\d{10}$/.test(cedula)) {
+      this.showMsg(this.t('masters.cedulaInvalid'), false);
+      return;
+    }
+    this.consultarCedulaPorNumero(cedula);
+  }
+
   private consultarRucPorNumero(ruc: string): void {
     this.sriLoading.set(true);
     this.maestros.consultaRuc(this.config().tipo as ClienteProveedorTipo, ruc).subscribe({
@@ -2551,6 +2566,26 @@ export class MaestroFormPage implements OnInit, OnDestroy {
       error: (err: unknown) => {
         this.sriLoading.set(false);
         this.showMsg(maestroErrorMessage(err, this.t('masters.rucLookupError')), false);
+      },
+    });
+  }
+
+  private consultarCedulaPorNumero(cedula: string): void {
+    this.sriLoading.set(true);
+    this.maestros.consultaCedula(this.config().tipo as ClienteProveedorTipo, cedula).subscribe({
+      next: (res) => {
+        this.sriLoading.set(false);
+        if (!res.encontrado || !res.nombres?.trim()) {
+          this.showMsg(this.t('masters.cedulaNotFound'), false);
+          return;
+        }
+        this.applyCedulaResponse(res);
+        const stale = res.obsoleto ? ` ${this.t('masters.cedulaStaleCache')}` : '';
+        this.showMsg(`${this.t('masters.cedulaLoaded')}${stale}`, true);
+      },
+      error: (err: unknown) => {
+        this.sriLoading.set(false);
+        this.showMsg(maestroErrorMessage(err, this.t('masters.cedulaLookupError')), false);
       },
     });
   }
@@ -2817,6 +2852,17 @@ export class MaestroFormPage implements OnInit, OnDestroy {
     return true;
   }
 
+  private applyCedulaResponse(res: ConsultaCedulaResponse): void {
+    this.clienteForm.patchValue({
+      identificacion: res.identificacion ?? this.clienteForm.controls.identificacion.value,
+      razonSocial: res.nombres ?? '',
+      nombreComercial: res.nombres ?? '',
+      direccion: res.lugarNacimiento ?? this.clienteForm.controls.direccion.value,
+      fuenteDatos: res.fuente ?? 'REGISTRO_CIVIL',
+    });
+    this.direccionNonce.update((n) => n + 1);
+  }
+
   private applySriResponse(res: ConsultaRucResponse): void {
     this.clienteForm.patchValue({
       identificacion: res.numeroRuc ?? this.clienteForm.controls.identificacion.value,
@@ -3007,11 +3053,19 @@ export class MaestroFormPage implements OnInit, OnDestroy {
             this.consultarRucPorNumero(identificacion);
             return;
           }
+          if (tipo === '05') {
+            this.consultarCedulaPorNumero(identificacion);
+            return;
+          }
           this.sriLoading.set(false);
         },
         error: () => {
           if (tipo === '04') {
             this.consultarRucPorNumero(identificacion);
+            return;
+          }
+          if (tipo === '05') {
+            this.consultarCedulaPorNumero(identificacion);
             return;
           }
           this.sriLoading.set(false);

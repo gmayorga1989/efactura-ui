@@ -65,6 +65,17 @@ export interface TerceroDireccion {
   principal?: boolean | null;
 }
 
+export interface ConsultaCedulaResponse {
+  identificacion: string;
+  encontrado: boolean;
+  nombres?: string | null;
+  lugarNacimiento?: string | null;
+  fechaNacimiento?: string | null;
+  fuente?: string | null;
+  obsoleto?: boolean;
+  datosRaw?: Record<string, unknown> | null;
+}
+
 export interface ConsultaRucResponse {
   numeroRuc: string;
   encontrado: boolean;
@@ -257,6 +268,10 @@ export class MaestrosService {
 
   consultaRuc(tipo: ClienteProveedorTipo, ruc: string): Observable<ConsultaRucResponse> {
     return this.http.get<ConsultaRucResponse>(`${this.endpoint(tipo)}/consulta-ruc/${encodeURIComponent(ruc)}`);
+  }
+
+  consultaCedula(tipo: ClienteProveedorTipo, cedula: string): Observable<ConsultaCedulaResponse> {
+    return this.http.get<ConsultaCedulaResponse>(`${this.endpoint(tipo)}/consulta-cedula/${encodeURIComponent(cedula)}`);
   }
 
   listasPrecio(tipo: ProductoServicioTipo): Observable<ListaPrecioOption[]> {

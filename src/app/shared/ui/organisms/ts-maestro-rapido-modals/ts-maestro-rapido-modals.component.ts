@@ -49,14 +49,18 @@ import { IVA_CODIGO_OPTIONS } from '../../../../pages/facturas/facturas.service'
               <label class="form-label">{{ t('masters.identification') }}</label>
               <div class="input-group input-group-sm">
                 <input class="form-control" [(ngModel)]="cliente.identificacion" name="cr-id" required />
-                @if (cliente.tipoIdentificacion === '04') {
+                @if (cliente.tipoIdentificacion === '04' || cliente.tipoIdentificacion === '05') {
                   <button
                     type="button"
                     class="btn btn-soft-primary"
-                    (click)="consultarRuc()"
+                    (click)="consultarIdentificacion()"
                     [disabled]="consultandoRuc()"
                   >
-                    {{ consultandoRuc() ? t('masters.querying') : t('masters.queryRuc') }}
+                    @if (cliente.tipoIdentificacion === '04') {
+                      {{ consultandoRuc() ? t('masters.querying') : t('masters.queryRuc') }}
+                    } @else {
+                      {{ consultandoRuc() ? t('masters.querying') : t('masters.queryCedula') }}
+                    }
                   </button>
                 }
               </div>
@@ -189,26 +193,49 @@ export class TsMaestroRapidoModalsComponent {
     this.itemOpenChange.emit(false);
   }
 
-  consultarRuc(): void {
-    const ruc = this.cliente.identificacion.trim();
-    if (!/^\d{13}$/.test(ruc)) {
-      this.toast.error(this.t('masters.rucInvalid'));
+  consultarIdentificacion(): void {
+    const id = this.cliente.identificacion.trim();
+    if (this.cliente.tipoIdentificacion === '04') {
+      if (!/^\d{13}$/.test(id)) {
+        this.toast.error(this.t('masters.rucInvalid'));
+        return;
+      }
+      this.consultandoRuc.set(true);
+      this.maestros.consultaRuc('clientes', id).subscribe({
+        next: (res) => {
+          this.consultandoRuc.set(false);
+          if (!res.encontrado) {
+            this.toast.error(this.t('masters.rucNotFound'));
+            return;
+          }
+          this.cliente.razonSocial = res.razonSocial?.trim() || this.cliente.razonSocial;
+          this.toast.success(this.t('masters.sriLoaded'));
+        },
+        error: () => {
+          this.consultandoRuc.set(false);
+          this.toast.error(this.t('masters.rucLookupError'));
+        },
+      });
+      return;
+    }
+    if (!/^\d{10}$/.test(id)) {
+      this.toast.error(this.t('masters.cedulaInvalid'));
       return;
     }
     this.consultandoRuc.set(true);
-    this.maestros.consultaRuc('clientes', ruc).subscribe({
+    this.maestros.consultaCedula('clientes', id).subscribe({
       next: (res) => {
         this.consultandoRuc.set(false);
-        if (!res.encontrado) {
-          this.toast.error(this.t('masters.rucNotFound'));
+        if (!res.encontrado || !res.nombres?.trim()) {
+          this.toast.error(this.t('masters.cedulaNotFound'));
           return;
         }
-        this.cliente.razonSocial = res.razonSocial?.trim() || this.cliente.razonSocial;
-        this.toast.success(this.t('masters.sriLoaded'));
+        this.cliente.razonSocial = res.nombres.trim();
+        this.toast.success(this.t('masters.cedulaLoaded'));
       },
       error: () => {
         this.consultandoRuc.set(false);
-        this.toast.error(this.t('masters.rucLookupError'));
+        this.toast.error(this.t('masters.cedulaLookupError'));
       },
     });
   }
